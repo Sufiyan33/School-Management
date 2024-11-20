@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 import com.sufiyan.entities.User;
 import com.sufiyan.repositories.UserRepository;
 
+import jakarta.annotation.PostConstruct;
+
 @Service
 public class AdminServiceImpl {
 	
@@ -15,6 +17,10 @@ public class AdminServiceImpl {
 		this.userRepo = userRepo;
 	}
 	
+	/*
+	 We don't need call by using api, when app start then it will run automatically
+	 */
+	@PostConstruct
 	public void createAdminAccount() {
 		User adminAccount = new User();
 		adminAccount.setEmail("admin@test.com");
