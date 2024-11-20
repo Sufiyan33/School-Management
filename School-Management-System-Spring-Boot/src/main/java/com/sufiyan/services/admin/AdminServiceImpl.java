@@ -4,6 +4,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.sufiyan.entities.User;
+import com.sufiyan.enums.UserRole;
 import com.sufiyan.repositories.UserRepository;
 
 import jakarta.annotation.PostConstruct;
@@ -22,10 +23,14 @@ public class AdminServiceImpl {
 	 */
 	@PostConstruct
 	public void createAdminAccount() {
-		User adminAccount = new User();
-		adminAccount.setEmail("admin@test.com");
-		adminAccount.setName("admin");
-		adminAccount.setPassword(new BCryptPasswordEncoder().encode("admin"));
-		userRepo.save(adminAccount);
+		User adminAccount = userRepo.findByRole(UserRole.ADMIN);
+		if(adminAccount == null) {
+			User admin = new User();
+			admin.setEmail("admin@test.com");
+			admin.setName("admin");
+			admin.setRole(UserRole.ADMIN);
+			admin.setPassword(new BCryptPasswordEncoder().encode("admin"));
+			userRepo.save(admin);
+		}
 	} 
 }
