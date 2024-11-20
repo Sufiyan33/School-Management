@@ -1,5 +1,7 @@
 package com.sufiyan.entities;
 
+import com.sufiyan.enums.UserRole;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,6 +18,7 @@ public class User {
 	private String name;
 	private String email;
 	private String password;
+	private UserRole role;
 	
 	public Long getId() {
 		return id;
@@ -42,6 +45,12 @@ public class User {
 		this.password = password;
 	}
 	
+	public UserRole getRole() {
+		return role;
+	}
+	public void setRole(UserRole role) {
+		this.role = role;
+	}
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + "]";
