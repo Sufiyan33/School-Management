@@ -9,6 +9,7 @@ import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -30,6 +31,7 @@ public class AuthenticationControllers {
 	@Autowired
 	private UserDetailsService userDetailsService;
 	
+	@PostMapping("/authenticate")
 	public AuthenticationResponse createAuthenticationToken(@RequestBody AuthenticationRequest auth, HttpServletResponse response) throws IOException {
 		try {
 			authentioncationManager.authenticate(new UsernamePasswordAuthenticationToken(auth.getEmail(), auth.getPassword()));
