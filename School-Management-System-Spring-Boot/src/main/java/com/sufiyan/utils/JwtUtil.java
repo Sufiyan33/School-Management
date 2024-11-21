@@ -1,6 +1,7 @@
 package com.sufiyan.utils;
 
 import java.security.Key;
+import java.util.Base64;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -9,18 +10,20 @@ import java.util.function.Function;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
+import com.sufiyan.enums.UserRole;
+
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 
-@SuppressWarnings("deprecation")
 @Component
 public class JwtUtil {
 
 	//You can generate using any site but giving random here.
-	public static final String SECRET = "my-32-character-ultra-secure-and-ultra-long-secret-sufiyan-go-ahead";
+	public static final String SECRET = Base64.getEncoder().encodeToString("my-32-character-ultra-secure-and-ultra-long-secret".getBytes());
 	
 	public String extractUsername(String token) {
 		return extractClaim(token, Claims::getSubject);
@@ -41,7 +44,7 @@ public class JwtUtil {
 	}
 
 	private Claims extractAllClaims(String token) {
-		return Jwts.parser().setSigningKey(getSignKey()).build().parseClaimsJws(token).getBody();
+		return Jwts.parserBuilder().setSigningKey(getSignKey()).build().parseClaimsJws(token).getBody();
 	}
 	
 	private boolean isTokenExpire(String token) {
@@ -55,10 +58,13 @@ public class JwtUtil {
 	
 	public String generateToken(String userName) {
 		Map<String, Object> claims = new HashMap<>();
+		//claims.put("role", UserRole.ADMIN.name());
 		return createToken(claims, userName);
 	}
 	
 	public String createToken(Map<String, Object> claims, String userName) {
+		System.out.println("Claims: " + claims);
+	    System.out.println("User Name: " + userName);
 		return Jwts.
 				builder()
 				.setClaims(claims)
