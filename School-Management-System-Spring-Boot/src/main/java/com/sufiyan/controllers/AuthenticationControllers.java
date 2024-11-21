@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sufiyan.dto.AuthenticationRequest;
+import com.sufiyan.dto.AuthenticationResponse;
+import com.sufiyan.utils.JwtUtil;
 
 import jakarta.servlet.http.HttpServletResponse;
 
@@ -23,19 +25,24 @@ public class AuthenticationControllers {
 	private AuthenticationManager authentioncationManager;
 	
 	@Autowired
+	private JwtUtil jwtUtil;
+	
+	@Autowired
 	private UserDetailsService userDetailsService;
 	
-	public void createAuthenticationToken(@RequestBody AuthenticationRequest auth, HttpServletResponse response) throws IOException {
+	public AuthenticationResponse createAuthenticationToken(@RequestBody AuthenticationRequest auth, HttpServletResponse response) throws IOException {
 		try {
 			authentioncationManager.authenticate(new UsernamePasswordAuthenticationToken(auth.getEmail(), auth.getPassword()));
 		}catch(BadCredentialsException e) {
 			throw new BadCredentialsException("Incorrect username or password");
 		}catch(DisabledException e) {
 			response.sendError(HttpServletResponse.SC_NOT_FOUND, "User is not created");
-			return;
+			return null;
 		}
 		
 		final UserDetails userDetails = userDetailsService.loadUserByUsername(auth.getEmail());
+		final String jwt = jwtUtil.generateToken(userDetails.getUsername());
 		
+		return new AuthenticationResponse(jwt); 
 	}
 }
