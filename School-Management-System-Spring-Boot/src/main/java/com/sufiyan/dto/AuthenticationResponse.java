@@ -2,15 +2,17 @@ package com.sufiyan.dto;
 
 public class AuthenticationResponse {
 
-	private String jwtToken;
+	private String jwt;
 	
-	public AuthenticationResponse(String jwt) {}
-
-	public String getJwtToken() {
-		return jwtToken;
+	public AuthenticationResponse(String jwt) {
+		this.jwt = jwt;
 	}
 
-	public void setJwtToken(String jwtToken) {
-		this.jwtToken = jwtToken;
+	public String getJwt() {
+		return jwt;
+	}
+
+	public void setJwt(String jwt) {
+		this.jwt = jwt;
 	}
 }
