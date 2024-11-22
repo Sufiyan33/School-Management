@@ -34,6 +34,6 @@ To safeguard your data and maintain security, we've implemented JWT (JSON Web To
 	{
 		"email": "admin@test.com,
 		"password": "admin"
-	}```
+	}
   - You will get jwt token in postman console.
   - If you are getting it means your admin api is working.
