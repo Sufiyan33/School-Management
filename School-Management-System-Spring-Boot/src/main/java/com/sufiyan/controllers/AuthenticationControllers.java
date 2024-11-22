@@ -43,7 +43,7 @@ public class AuthenticationControllers {
 	private static final String HEADER_STRING = "Authorization ";
 	
 	@PostMapping("/authenticate")
-	public AuthenticationResponse createAuthenticationToken(@RequestBody AuthenticationRequest auth, HttpServletResponse response) throws IOException, JSONException {
+	public void createAuthenticationToken(@RequestBody AuthenticationRequest auth, HttpServletResponse response) throws IOException, JSONException {
 		try {
 			System.out.println("Authenticating email: " + auth.getEmail());
 			authentioncationManager.authenticate(new UsernamePasswordAuthenticationToken(auth.getEmail(), auth.getPassword()));
@@ -51,7 +51,7 @@ public class AuthenticationControllers {
 			throw new BadCredentialsException("Incorrect username or password");
 		}catch(DisabledException e) {
 			response.sendError(HttpServletResponse.SC_NOT_FOUND, "User is not created");
-			return null;
+			return;
 		}
 		
 		final UserDetails userDetails = userDetailsService.loadUserByUsername(auth.getEmail());
@@ -71,9 +71,5 @@ public class AuthenticationControllers {
 		response.setHeader("Access-Control-Expose-Headers", "Authorization");
 		response.setHeader("Access-Control-Allow-Headers", "Authorization, X-Pingother, Origin, X-Requested-With, Content-Type, Accept, X-Custom-header");
 		response.setHeader(HEADER_STRING, TOKEN_PREFIX + jwt);
-		
-		 
-		
-		return new AuthenticationResponse(jwt); 
 	}
 }
