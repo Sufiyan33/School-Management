@@ -40,9 +40,9 @@ To safeguard your data and maintain security, we've implemented JWT (JSON Web To
 
 - Setup Angular project:
   - Create angular project using below command:
-   - ```bash
+     ```bash
         npm new school-management-system-angular
   - Add angular material ui:
-   - ```bash
+     ```bash
 		ng add @angular/material
   - Now you can add remaining component.
