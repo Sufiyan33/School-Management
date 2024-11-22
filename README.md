@@ -37,3 +37,12 @@ To safeguard your data and maintain security, we've implemented JWT (JSON Web To
 	}
   - You will get jwt token in postman console.
   - If you are getting it means your admin api is working.
+
+- Setup Angular project:
+  - Create angular project using below command:
+   - ```bash
+        npm new school-management-system-angular
+  - Add angular material ui:
+   - ```bash
+		ng add @angular/material
+  - Now you can add remaining component.
