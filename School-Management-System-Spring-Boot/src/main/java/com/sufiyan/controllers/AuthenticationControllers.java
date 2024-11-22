@@ -44,6 +44,8 @@ public class AuthenticationControllers {
 		}
 		
 		final UserDetails userDetails = userDetailsService.loadUserByUsername(auth.getEmail());
+		
+		// made code changes here..
 		System.out.println("Loaded UserDetails: " + userDetails);
 		final String jwt = jwtUtil.generateToken(userDetails.getUsername());
 		 System.out.println("Generated JWT: " + jwt);
