@@ -24,3 +24,16 @@ To safeguard your data and maintain security, we've implemented JWT (JSON Web To
 - Angular Material UI:
   - We've incorporated Angular Material UI as the user interface library, ensuring a visually appealing and user-friendly interface.
   - This modern UI library enhances the overall look and feel of the system.
+  
+- Test Backend application:
+  - Run Application on define port.
+  - Open postman and give url:
+	- http://localhost:8080/authenticate
+  - Body content:
+	```bash
+	{
+		"email": "admin@test.com,
+		"password": "admin"
+	}```
+  - You will get jwt token in postman console.
+  - If you are getting it means your admin api is working.
