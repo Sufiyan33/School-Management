@@ -12,4 +12,9 @@ export class StorageService {
     window.localStorage.removeItem(Constant.USER);
     window.localStorage.setItem(Constant.USER, JSON.stringify(user));
   }
+
+  public saveToken(token: string){
+    window.localStorage.removeItem(Constant.TOKEN);
+    window.localStorage.setItem(Constant.TOKEN, token);
+  }
 }
