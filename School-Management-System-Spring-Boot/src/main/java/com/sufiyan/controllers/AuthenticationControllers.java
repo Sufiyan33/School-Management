@@ -60,7 +60,6 @@ public class AuthenticationControllers {
 		
 		System.out.println("Loaded UserDetails: " + userDetails);
 		final String jwt = jwtUtil.generateToken(userDetails.getUsername());
-		System.out.println("Generated JWT: " + jwt);
 		
 		if(userOpt.isPresent()) {
 			response.getWriter().write(new JSONObject()
