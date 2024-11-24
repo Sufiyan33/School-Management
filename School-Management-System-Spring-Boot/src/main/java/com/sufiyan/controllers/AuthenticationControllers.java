@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sufiyan.dto.AuthenticationRequest;
-import com.sufiyan.dto.AuthenticationResponse;
 import com.sufiyan.entities.User;
 import com.sufiyan.repositories.UserRepository;
 import com.sufiyan.utils.JwtUtil;
