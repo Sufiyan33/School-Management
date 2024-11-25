@@ -36,7 +36,15 @@ export class StorageService {
   }
 
   static getUsersRole(): string{
-    return null;
+    const user = getUsers();
+    if(user == null){
+      return '';
+    }
+    return user.role;
+  }
+
+  static getUsers(): any{
+    return JSON.parse(localStorage.getItem(Constant.USER));
   }
 
 }
