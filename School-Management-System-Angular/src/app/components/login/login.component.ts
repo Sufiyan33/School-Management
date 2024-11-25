@@ -6,6 +6,7 @@ import { MatInput } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { StorageService } from '../../services/storage/storage.service';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,8 @@ export class LoginComponent implements OnInit{
   loginForm: FormGroup | undefined;
   constructor(private service: AuthService, 
     private fb: FormBuilder,
-    private router: Router){}
+    private router: Router,
+    private snakBar: MatSnackBar){}
 
   ngOnInit(){
     this.loginForm = this.fb.group({
@@ -40,7 +42,18 @@ export class LoginComponent implements OnInit{
       }else if(StorageService.isStudentLoggedIn()){
         this.router.navigateByUrl("student/dashboard");
       }
-    })
-    this.loginForm.reset();
+    }),
+    //this.loginForm.reset();
+    error =>{
+      if(error.status == 406){
+        this.snakBar.open("User is not active", "Close", {
+          duration: 5000
+        });
+      }else{
+        this.snakBar.open("Bad credentials", "close", {
+          duration: 5000
+        });
+      }
+    }
   }
 }
