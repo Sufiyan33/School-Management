@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Constant } from '../../const/Constants';
+import { Token } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root'
@@ -19,10 +20,23 @@ export class StorageService {
   }
 
   static isAdminLoggedIn(): boolean{
-    return false;
+    if(this.getToken() == null){
+      return true;
+    }
+    const role: string = this.getUsersRole();
+    return role== "ADMIN";
   }
 
   static isStudentLoggedIn(): boolean{
     return false;
   }
+
+  static getToken(): string{
+    return window.localStorage.getItem(Constant.TOKEN);
+  }
+
+  static getUsersRole(): string{
+    return null;
+  }
+
 }
