@@ -19,7 +19,6 @@ export class LoginComponent implements OnInit{
   loginForm: FormGroup | undefined;
   constructor(private service: AuthService, 
     private fb: FormBuilder,
-    private storageSetvice: StorageService,
     private router: Router){}
 
   ngOnInit(){
@@ -36,9 +35,9 @@ export class LoginComponent implements OnInit{
       this.loginForm.get(['password'])!.value
     ).subscribe((response) =>{
       console.log(response);
-      if(this.storageSetvice.isAdminLoggedIn()){
+      if(StorageService.isAdminLoggedIn()){
         this.router.navigateByUrl("admin/dashboard");
-      }else if(this.storageSetvice.isStudentLoggedIn()){
+      }else if(StorageService.isStudentLoggedIn()){
         this.router.navigateByUrl("student/dashboard");
       }
     })
