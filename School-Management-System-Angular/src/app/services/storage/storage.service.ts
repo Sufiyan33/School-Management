@@ -17,4 +17,12 @@ export class StorageService {
     window.localStorage.removeItem(Constant.TOKEN);
     window.localStorage.setItem(Constant.TOKEN, token);
   }
+
+  static isAdminLoggedIn(): boolean{
+    return false;
+  }
+
+  static isStudentLoggedIn(): boolean{
+    return false;
+  }
 }
