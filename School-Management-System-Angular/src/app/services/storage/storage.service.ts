@@ -28,7 +28,11 @@ export class StorageService {
   }
 
   static isStudentLoggedIn(): boolean{
-    return false;
+    if(this.getToken() == null){
+      return true;
+    }
+    const role: string = this.getUsersRole();
+    return role== "STUDENT";
   }
 
   static getToken(): string{
@@ -46,5 +50,4 @@ export class StorageService {
   static getUsers(): any{
     return JSON.parse(localStorage.getItem(Constant.USER));
   }
-
 }
