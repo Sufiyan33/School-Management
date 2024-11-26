@@ -1,7 +1,7 @@
 <div>
     @if (!isAdminLoggedIn && !isStudentLoggedIn) {
         <mat-toolbar color="primary" class="navbar">
-            <span class="navbar-brand">School Management</span>
+            <span class="navbar-brand">Not LoggedIn!!!</span>
             <span class="spacer"></span>
             <button mat-button routerLink="/login" routerLinkActive="active">Login</button>
         </mat-toolbar>
@@ -10,10 +10,10 @@
 <div>
     @if (isAdminLoggedIn) {
         <mat-toolbar color="primary" class="navbar">
-            <span class="navbar-brand">School Management</span>
+            <span class="navbar-brand">Admin Role</span>
             <span class="spacer"></span>
             <button mat-button routerLink="/admin/dashboard" routerLinkActive="active">Dashboard</button>
-            <button mat-button>Logout</button>
+            <button mat-button (click)="logout()" routerLinkActive="active">Logout</button>
         </mat-toolbar>
     }
 </div>
@@ -21,10 +21,10 @@
 <div>
     @if (isStudentLoggedIn) {
         <mat-toolbar color="primary" class="navbar">
-            <span class="navbar-brand">School Management</span>
+            <span class="navbar-brand">Student Role</span>
             <span class="spacer"></span>
             <button mat-button routerLink="/student/dashboard" routerLinkActive="active">Dashboard</button>
-            <button mat-button>Logout</button>
+            <button mat-button (click)="logout()" routerLinkActive="active">Logout</button>
         </mat-toolbar>
     }
 </div>
