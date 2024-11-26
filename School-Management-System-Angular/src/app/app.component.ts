@@ -6,6 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { StorageService } from './services/storage/storage.service';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +16,16 @@ import { MatFormFieldModule } from '@angular/material/form-field';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
+export class AppComponent{
   title = 'School-Management-System-Angular';
+
+  isAdminLoggedIn: boolean;
+  isStudentLoggedIn: boolean;
+
+  constructor(){}
+
+  private getLoggedInUserStatus(): void{
+    this.isAdminLoggedIn = StorageService.isAdminLoggedIn();
+    this.isStudentLoggedIn = StorageService.isStudentLoggedIn();
+  }
 }
