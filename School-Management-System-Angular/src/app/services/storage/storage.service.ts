@@ -21,7 +21,7 @@ export class StorageService {
 
   static isAdminLoggedIn(): boolean{
     if(this.getToken() == null){
-      return true;
+      return false;
     }
     const role: string = this.getUsersRole();
     return role== "ADMIN";
@@ -29,7 +29,7 @@ export class StorageService {
 
   static isStudentLoggedIn(): boolean{
     if(this.getToken() == null){
-      return true;
+      return false;
     }
     const role: string = this.getUsersRole();
     return role== "STUDENT";
