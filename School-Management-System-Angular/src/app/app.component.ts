@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
@@ -22,10 +22,15 @@ export class AppComponent{
   isAdminLoggedIn: boolean;
   isStudentLoggedIn: boolean;
 
-  constructor(){}
+  constructor(private router: Router){}
 
   private getLoggedInUserStatus(): void{
     this.isAdminLoggedIn = StorageService.isAdminLoggedIn();
     this.isStudentLoggedIn = StorageService.isStudentLoggedIn();
+  }
+
+  logout(){
+    StorageService.logout();
+    this.router.navigateByUrl('/login');
   }
 }
