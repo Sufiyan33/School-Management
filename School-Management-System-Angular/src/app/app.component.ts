@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { Router, RouterLink, RouterOutlet } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { NavigationEnd, Router, RouterLink, RouterOutlet } from '@angular/router';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
@@ -16,13 +16,22 @@ import { StorageService } from './services/storage/storage.service';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent{
+export class AppComponent implements OnInit{
   title = 'School-Management-System-Angular';
 
   isAdminLoggedIn: boolean;
   isStudentLoggedIn: boolean;
 
   constructor(private router: Router){}
+
+  ngOnInit(): void {
+    this.getLoggedInUserStatus();
+    this.router.events.subscribe(event =>{
+      if(event instanceof NavigationEnd){
+        this.getLoggedInUserStatus();
+      }
+    })
+  }
 
   private getLoggedInUserStatus(): void{
     this.isAdminLoggedIn = StorageService.isAdminLoggedIn();
@@ -31,6 +40,6 @@ export class AppComponent{
 
   logout(){
     StorageService.logout();
-    this.router.navigateByUrl('/login');
+    this.router.navigateByUrl("/login");
   }
 }
