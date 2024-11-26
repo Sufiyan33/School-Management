@@ -50,4 +50,9 @@ export class StorageService {
   static getUsers(): any{
     return JSON.parse(localStorage.getItem(Constant.USER));
   }
+
+  static logout(){
+    window.localStorage.removeItem(Constant.TOKEN);
+    window.localStorage.removeItem(Constant.USER);
+  }
 }
