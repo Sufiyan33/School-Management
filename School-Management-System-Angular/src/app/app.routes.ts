@@ -1,10 +1,13 @@
 import { Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
+import { noAuthGuard } from './auth/guards/noAuth-guard/no-auth.guard';
 
 export const routes: Routes = [
     {
         path: 'login',
-        component: LoginComponent
+        component: LoginComponent,
+        canActivate: [noAuthGuard]
+
     },
     {
         path: 'admin', 

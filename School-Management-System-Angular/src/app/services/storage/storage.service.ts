@@ -55,4 +55,11 @@ export class StorageService {
     window.localStorage.removeItem(Constant.TOKEN);
     window.localStorage.removeItem(Constant.USER);
   }
+
+  static hasToken(){
+    if(this.getToken === null){
+      return false;
+    }
+    return true;
+  }
 }
