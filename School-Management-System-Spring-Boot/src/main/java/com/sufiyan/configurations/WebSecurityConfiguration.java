@@ -11,26 +11,35 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import com.sufiyan.filters.JwtRequestFilter;
 
 @Configuration
 @EnableMethodSecurity
 @EnableWebSecurity
 public class WebSecurityConfiguration {
 
+	private final JwtRequestFilter jwtRequestFilter;
+	
+	public WebSecurityConfiguration(JwtRequestFilter jwtRequestFilter) {
+		this.jwtRequestFilter = jwtRequestFilter;
+	}
+	
 	// Let's authorize our endpoinds
 	@Bean
 	public SecurityFilterChain sucSecurityFilterChain(HttpSecurity http) throws Exception {
 		
-		http.csrf(csrf -> csrf.disable())
+		/*http.csrf(csrf -> csrf.disable())
 				.authorizeHttpRequests(auth -> auth.requestMatchers("/authenticate").permitAll()
 				.anyRequest().authenticated())
 				.sessionManagement(
 						session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 		
-		return http.build();
+		return http.build();*/
 				
 				
-		/*return http.csrf().disable()
+		return http.csrf().disable()
 		.authorizeHttpRequests()
 		.requestMatchers("/authenticate")
 		.permitAll()
@@ -42,7 +51,8 @@ public class WebSecurityConfiguration {
 		.sessionManagement()
 		.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 		.and()
-		.build();*/
+		.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class)
+		.build();
 	} 
 	@Bean
 	public PasswordEncoder passwordEnconder() {
