@@ -22,6 +22,10 @@ public class WebSecurityConfiguration {
 
 	private final JwtRequestFilter jwtRequestFilter;
 	
+	public WebSecurityConfiguration(JwtRequestFilter jwtRequestFilter) {
+		this.jwtRequestFilter = jwtRequestFilter;
+	}
+	
 	// Let's authorize our endpoinds
 	@Bean
 	public SecurityFilterChain sucSecurityFilterChain(HttpSecurity http) throws Exception {
