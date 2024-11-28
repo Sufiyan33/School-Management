@@ -57,7 +57,7 @@ export class StorageService {
   }
 
   static hasToken(){
-    if(this.getToken === null){
+    if(this.getToken() === null){
       return false;
     }
     return true;
