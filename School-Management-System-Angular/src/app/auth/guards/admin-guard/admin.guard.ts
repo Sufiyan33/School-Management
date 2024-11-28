@@ -12,6 +12,7 @@ export class adminGuard implements CanActivate  {
   constructor(private router:Router, private snackBar: MatSnackBar){}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+    debugger;
     if(StorageService.isStudentLoggedIn()){
       this.router.navigateByUrl("/student/dashboard");
       this.snackBar.open("You don't have access to this page", "Close", {
