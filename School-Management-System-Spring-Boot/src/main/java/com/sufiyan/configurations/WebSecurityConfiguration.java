@@ -11,6 +11,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import com.sufiyan.filters.JwtRequestFilter;
 
@@ -19,7 +20,8 @@ import com.sufiyan.filters.JwtRequestFilter;
 @EnableWebSecurity
 public class WebSecurityConfiguration {
 
-	//private final JwtRequestFilter jwtRequestFilter;
+	private final JwtRequestFilter jwtRequestFilter;
+	
 	// Let's authorize our endpoinds
 	@Bean
 	public SecurityFilterChain sucSecurityFilterChain(HttpSecurity http) throws Exception {
@@ -45,6 +47,7 @@ public class WebSecurityConfiguration {
 		.sessionManagement()
 		.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 		.and()
+		.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class)
 		.build();
 	} 
 	@Bean
