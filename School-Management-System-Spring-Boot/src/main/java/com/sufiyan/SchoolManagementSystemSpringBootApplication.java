@@ -10,4 +10,5 @@ public class SchoolManagementSystemSpringBootApplication {
 		SpringApplication.run(SchoolManagementSystemSpringBootApplication.class, args);
 	}
 
+	//Added comment
 }
