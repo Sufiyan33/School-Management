@@ -10,7 +10,7 @@ import com.sufiyan.repositories.UserRepository;
 import jakarta.annotation.PostConstruct;
 
 @Service
-public class AdminServiceImpl {
+public class AdminServiceImpl implements AdminService{
 	
 	private final UserRepository userRepo;
 	
