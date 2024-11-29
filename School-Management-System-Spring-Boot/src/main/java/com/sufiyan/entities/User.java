@@ -1,5 +1,7 @@
 package com.sufiyan.entities;
 
+import java.util.Date;
+
 import com.sufiyan.enums.UserRole;
 
 import jakarta.persistence.Entity;
@@ -18,8 +20,50 @@ public class User {
 	private String name;
 	private String email;
 	private String password;
+	private String fatherName;
+	private String motherName;
+	private String StudentClass;
+	private Date dob;
+	private String address;
+	private String gender;
 	private UserRole role;
 	
+	public String getFatherName() {
+		return fatherName;
+	}
+	public void setFatherName(String fatherName) {
+		this.fatherName = fatherName;
+	}
+	public String getMotherName() {
+		return motherName;
+	}
+	public void setMotherName(String motherName) {
+		this.motherName = motherName;
+	}
+	public String getStudentClass() {
+		return StudentClass;
+	}
+	public void setStudentClass(String studentClass) {
+		StudentClass = studentClass;
+	}
+	public Date getDob() {
+		return dob;
+	}
+	public void setDob(Date dob) {
+		this.dob = dob;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public String getGender() {
+		return gender;
+	}
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
 	public Long getId() {
 		return id;
 	}
@@ -51,8 +95,12 @@ public class User {
 	public void setRole(UserRole role) {
 		this.role = role;
 	}
+	
+	
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + "]";
+		return "User [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + ", fatherName="
+				+ fatherName + ", motherName=" + motherName + ", StudentClass=" + StudentClass + ", dob=" + dob
+				+ ", address=" + address + ", gender=" + gender + ", role=" + role + "]";
 	}
 }
