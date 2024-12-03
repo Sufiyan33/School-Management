@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class StudentDto {
 
+	private Long id;
 	private String name;
 	private String email;
 	private String password;
@@ -84,5 +85,13 @@ public class StudentDto {
 
 	public void setGender(String gender) {
 		this.gender = gender;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 }
