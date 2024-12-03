@@ -1,5 +1,8 @@
 package com.sufiyan.services.admin;
 
+import java.util.Optional;
+
+import org.springframework.beans.BeanUtils;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -37,7 +40,18 @@ public class AdminServiceImpl implements AdminService{
 
 	@Override
 	public StudentDto posStudent(StudentDto studentDto) {
-		// TODO Auto-generated method stub
+		Optional<User> optionalUser = userRepo.findFirstByEmail(studentDto.getEmail());
+		if(optionalUser.isEmpty()) {
+			User user = new User();
+			BeanUtils.copyProperties(studentDto, user);
+			user.setPassword(new BCryptPasswordEncoder().encode(studentDto.getPassword()));
+			user.setRole(UserRole.STUDENT);
+			User createdUser = userRepo.save(user);
+			StudentDto createdStudentDto = new StudentDto();
+			createdStudentDto.setId(createdUser.getId());
+			createdStudentDto.setEmail(createdUser.getEmail());
+			return createdStudentDto;
+		}
 		return null;
 	} 
 }
