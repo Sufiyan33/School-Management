@@ -3,6 +3,7 @@ package com.sufiyan.services.admin;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.sufiyan.dto.StudentDto;
 import com.sufiyan.entities.User;
 import com.sufiyan.enums.UserRole;
 import com.sufiyan.repositories.UserRepository;
@@ -32,5 +33,11 @@ public class AdminServiceImpl implements AdminService{
 			admin.setPassword(new BCryptPasswordEncoder().encode("admin"));
 			userRepo.save(admin);
 		}
+	}
+
+	@Override
+	public StudentDto posStudent(StudentDto studentDto) {
+		// TODO Auto-generated method stub
+		return null;
 	} 
 }
