@@ -3,7 +3,7 @@
     <div class="parent">
         <div class="child">
             <h1 class="form-title">Post Student</h1>
-            <form class="login-form">
+            <form class="login-form" [formGroup]="validateForm">
                 <mat-form-field appearance="outline" class="form-field">
                     <mat-label>Email</mat-label>
                     <input matInput type="email" placeholder="Enter email" formControlName="email">
