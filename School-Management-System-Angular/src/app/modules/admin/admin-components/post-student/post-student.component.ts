@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDatepicker, MatDatepickerModule, MatDatepickerToggle } from '@angular/material/datepicker';
 import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -9,7 +10,7 @@ import { MatOption, MatSelect, MatSelectModule } from '@angular/material/select'
   selector: 'app-post-student',
   standalone: true,
   imports: [MatProgressSpinnerModule, MatFormFieldModule, MatLabel, MatSelectModule, 
-    MatOption, MatDatepickerModule, MatDatepickerToggle, CommonModule],
+    MatOption, MatDatepickerModule, MatDatepickerToggle, CommonModule, ReactiveFormsModule, FormsModule],
   templateUrl: './post-student.component.html',
   styleUrl: './post-student.component.css'
 })
