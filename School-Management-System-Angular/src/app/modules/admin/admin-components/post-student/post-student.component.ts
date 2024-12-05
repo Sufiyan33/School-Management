@@ -29,16 +29,16 @@ export class PostStudentComponent implements OnInit{
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({
-      email: ['null', Validators.required],
-      name: ['null', Validators.required],
-      password: ['null', Validators.required],
-      checkPassword: ['null', Validators.required],
-      fatherName: ['null', Validators.required],
-      motherName: ['null', Validators.required],
-      studentClass: ['null', Validators.required],
-      dateOfBirth: ['null', Validators.required],
-      address: ['null', Validators.required],
-      gender: ['null', Validators.required]
+      email: ['', Validators.required],
+      name: ['', Validators.required],
+      password: ['', Validators.required],
+      checkPassword: ['', Validators.required],
+      fatherName: ['', Validators.required],
+      motherName: ['', Validators.required],
+      studentClass: ['', Validators.required],
+      dateOfBirth: ['', Validators.required],
+      address: ['', Validators.required],
+      gender: ['', Validators.required]
     })
   }
 
