@@ -42,4 +42,7 @@ export class PostStudentComponent implements OnInit{
     })
   }
 
+  postStudent(){
+    console.log(this.validateForm.value)
+  }
 }

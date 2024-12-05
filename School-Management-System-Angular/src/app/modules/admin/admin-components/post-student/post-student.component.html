@@ -50,7 +50,7 @@
                         <mat-option *ngFor="let gender of GENDER" [value]="gender">{{gender}}</mat-option>
                     </mat-select>
                 </mat-form-field>
-                <button mat-raised-button color="primary">Add Student</button>
+                <button mat-raised-button color="primary" (click)="postStudent()">Add Student</button>
             </form>
         </div>
     </div>
