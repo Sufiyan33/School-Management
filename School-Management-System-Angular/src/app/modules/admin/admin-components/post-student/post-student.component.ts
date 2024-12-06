@@ -6,12 +6,15 @@ import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatOption, MatSelect, MatSelectModule } from '@angular/material/select';
 import { AdminService } from '../../admin-service/admin.service';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-post-student',
   standalone: true,
   imports: [MatProgressSpinnerModule, MatFormFieldModule, MatLabel, MatSelectModule, 
-    MatOption, MatDatepickerModule, MatDatepickerToggle, CommonModule, ReactiveFormsModule, FormsModule],
+    MatOption, MatDatepickerModule, MatDatepickerToggle, CommonModule, ReactiveFormsModule, FormsModule,
+    MatButtonModule, MatInputModule],
   templateUrl: './post-student.component.html',
   styleUrl: './post-student.component.css'
 })
