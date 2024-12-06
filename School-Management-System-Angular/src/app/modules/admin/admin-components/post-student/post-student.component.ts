@@ -35,7 +35,7 @@ export class PostStudentComponent implements OnInit{
       email: ['', Validators.required],
       name: ['', Validators.required],
       password: ['', Validators.required],
-      checkPassword: ['', Validators.required, this.confirmationValidator],
+      checkPassword: ['', [Validators.required, this.confirmationValidator]],
       fatherName: ['', Validators.required],
       motherName: ['', Validators.required],
       studentClass: ['', Validators.required],
@@ -47,11 +47,16 @@ export class PostStudentComponent implements OnInit{
 
   postStudent(){
     console.log(this.validateForm.value)
+    console.log('Authorization Header:', this.service.createAuthorizationHeader().get('Authorization'));
+    this.isSpinning = true;
+    this.service.addStudent(this.validateForm.value).subscribe((res:any)=>{
+      console.log(res);
+    })
   }
 
   confirmationValidator = (control: FormControl):{
     [s: string]:boolean
-  }=>{
+  } =>{
     if(!control.value){
       return {required: true}
     }else if(control.value !== this.validateForm.controls['password'].value){
