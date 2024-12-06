@@ -10,6 +10,6 @@ export class AdminService {
   constructor(private http: HttpClient) { }
 
   addStudent(studentDto: any){
-    this.http.post<[]>(Constant.BASIC_URL + "api/admin/student", studentDto);
+    return this.http.post<[]>(Constant.BASIC_URL + "api/admin/student", studentDto);
   }
 }
