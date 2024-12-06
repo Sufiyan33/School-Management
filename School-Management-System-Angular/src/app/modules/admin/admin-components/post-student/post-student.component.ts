@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatDatepicker, MatDatepickerModule, MatDatepickerToggle } from '@angular/material/datepicker';
 import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -35,7 +35,7 @@ export class PostStudentComponent implements OnInit{
       email: ['', Validators.required],
       name: ['', Validators.required],
       password: ['', Validators.required],
-      checkPassword: ['', Validators.required],
+      checkPassword: ['', Validators.required, this.confirmationValidator],
       fatherName: ['', Validators.required],
       motherName: ['', Validators.required],
       studentClass: ['', Validators.required],
@@ -47,5 +47,16 @@ export class PostStudentComponent implements OnInit{
 
   postStudent(){
     console.log(this.validateForm.value)
+  }
+
+  confirmationValidator = (control: FormControl):{
+    [s: string]:boolean
+  }=>{
+    if(!control.value){
+      return {required: true}
+    }else if(control.value !== this.validateForm.controls['password'].value){
+      return {confirm: true, error: true};
+    }
+    return {};
   }
 }
