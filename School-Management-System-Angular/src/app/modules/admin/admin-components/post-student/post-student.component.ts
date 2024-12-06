@@ -56,12 +56,12 @@ export class PostStudentComponent implements OnInit{
 
   confirmationValidator = (control: FormControl):{
     [s: string]:boolean
-  } | null =>{
+  } =>{
     if(!control.value){
       return {required: true}
     }else if(control.value !== this.validateForm.controls['password'].value){
       return {confirm: true, error: true};
     }
-    return null;
+    return {};
   }
 }

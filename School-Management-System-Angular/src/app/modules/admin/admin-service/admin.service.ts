@@ -25,7 +25,7 @@ export class AdminService {
     }
     console.log("token found return token: ", token);
     return authHeaders.set(
-      'Authorization', 'Bearer ' + token
+      'Authorization', 'Bearer ' + token,
     );
   }
 
