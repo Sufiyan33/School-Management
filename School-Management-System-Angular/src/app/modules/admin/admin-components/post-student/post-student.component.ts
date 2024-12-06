@@ -35,7 +35,7 @@ export class PostStudentComponent implements OnInit{
       email: ['', Validators.required],
       name: ['', Validators.required],
       password: ['', Validators.required],
-      checkPassword: ['', Validators.required, this.confirmationValidator],
+      checkPassword: ['', [Validators.required, this.confirmationValidator]],
       fatherName: ['', Validators.required],
       motherName: ['', Validators.required],
       studentClass: ['', Validators.required],
@@ -55,12 +55,12 @@ export class PostStudentComponent implements OnInit{
 
   confirmationValidator = (control: FormControl):{
     [s: string]:boolean
-  }=>{
+  } | null =>{
     if(!control.value){
       return {required: true}
     }else if(control.value !== this.validateForm.controls['password'].value){
       return {confirm: true, error: true};
     }
-    return {};
+    return null;
   }
 }
