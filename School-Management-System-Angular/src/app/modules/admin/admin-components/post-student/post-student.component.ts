@@ -47,6 +47,10 @@ export class PostStudentComponent implements OnInit{
 
   postStudent(){
     console.log(this.validateForm.value)
+    this.isSpinning = true;
+    this.service.addStudent(this.validateForm.value).subscribe((res:any)=>{
+      console.log(res);
+    })
   }
 
   confirmationValidator = (control: FormControl):{
