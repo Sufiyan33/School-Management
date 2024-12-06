@@ -47,6 +47,7 @@ export class PostStudentComponent implements OnInit{
 
   postStudent(){
     console.log(this.validateForm.value)
+    console.log('Authorization Header:', this.service.createAuthorizationHeader().get('Authorization'));
     this.isSpinning = true;
     this.service.addStudent(this.validateForm.value).subscribe((res:any)=>{
       console.log(res);
