@@ -18,8 +18,14 @@ export class AdminService {
 
   createAuthorizationHeader(): HttpHeaders{
     let authHeaders: HttpHeaders = new HttpHeaders();
+    let token = StorageService.getToken();
+    if(!token){
+      console.error('No token found!');
+      return new HttpHeaders();
+    }
+    console.log("token found return token: ", token);
     return authHeaders.set(
-      'Authorization', "Bearer " + StorageService.getToken()
+      'Authorization', 'Bearer ' + token
     );
   }
 
