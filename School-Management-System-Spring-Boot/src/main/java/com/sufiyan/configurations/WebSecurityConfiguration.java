@@ -2,6 +2,7 @@ package com.sufiyan.configurations;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -26,21 +27,14 @@ public class WebSecurityConfiguration {
 		this.jwtRequestFilter = jwtRequestFilter;
 	}
 	
-	// Let's authorize our endpoinds
+	// Let's authorize our end-points
 	@Bean
 	public SecurityFilterChain sucSecurityFilterChain(HttpSecurity http) throws Exception {
-		
-		/*http.csrf(csrf -> csrf.disable())
-				.authorizeHttpRequests(auth -> auth.requestMatchers("/authenticate").permitAll()
-				.anyRequest().authenticated())
-				.sessionManagement(
-						session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
-		
-		return http.build();*/
-				
-				
+						
 		return http.csrf().disable()
+		.cors().and()
 		.authorizeHttpRequests()
+		.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
 		.requestMatchers("/authenticate")
 		.permitAll()
 		.and()
