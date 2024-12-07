@@ -30,6 +30,17 @@ export class PostStudentComponent implements OnInit{
     private fb: FormBuilder
   ){}
 
+  confirmationValidator = (control: FormControl):{
+    [s: string]:boolean
+    } =>{
+    if(!control.value){
+      return {required: true}
+    }else if(control.value !== this.validateForm.controls['password'].value){
+      return {confirm: true, error: true};
+    }
+    return {};
+  }
+
   ngOnInit(): void {
     this.validateForm = this.fb.group({
       email: ['', Validators.required],
@@ -49,19 +60,10 @@ export class PostStudentComponent implements OnInit{
     console.log(this.validateForm.value)
     console.log('Authorization Header:', this.service.createAuthorizationHeader().get('Authorization'));
     this.isSpinning = true;
-    this.service.addStudent(this.validateForm.value).subscribe((res:any)=>{
+    this.service.addStudent(this.validateForm.value).subscribe((res)=>{
       console.log(res);
     })
   }
 
-  confirmationValidator = (control: FormControl):{
-    [s: string]:boolean
-  } =>{
-    if(!control.value){
-      return {required: true}
-    }else if(control.value !== this.validateForm.controls['password'].value){
-      return {confirm: true, error: true};
-    }
-    return {};
-  }
+ 
 }
