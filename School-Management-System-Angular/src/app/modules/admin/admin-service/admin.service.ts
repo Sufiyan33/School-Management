@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Constant } from '../../../const/Constants';
 import { StorageService } from '../../../services/storage/storage.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class AdminService {
 
   constructor(private http: HttpClient) { }
 
-  addStudent(studentDto: any){
+  addStudent(studentDto: any): Observable<any>{
     return this.http.post<[]>(Constant.BASIC_URL + "api/admin/student", studentDto, {
       headers: this.createAuthorizationHeader(),
     });
