@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sufiyan.dto.StudentDto;
+import com.sufiyan.exceptions.StudentAlreadyExistsException;
 import com.sufiyan.services.admin.AdminService;
 
 @RestController
@@ -23,9 +24,13 @@ public class AdminController {
 	
 	@PostMapping("/student")
 	public ResponseEntity<?> addStendent(@RequestBody StudentDto studentDto){
-		StudentDto createdStudent = adminService.posStudent(studentDto);
-		if(createdStudent == null)
-			return new ResponseEntity<>("something wrong.", HttpStatus.BAD_REQUEST);
-		return ResponseEntity.status(HttpStatus.CREATED).body(createdStudent);
+		try {
+			StudentDto createdStudent = adminService.posStudent(studentDto);
+			return ResponseEntity.status(HttpStatus.CREATED).body(createdStudent);
+		}catch(StudentAlreadyExistsException e) {
+			return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
+		}catch(Exception e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Something went wrong...");
+		}
 	}
 }
