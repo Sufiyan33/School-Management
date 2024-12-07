@@ -1,13 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { MatDatepicker, MatDatepickerModule, MatDatepickerToggle } from '@angular/material/datepicker';
+import { MatDatepickerModule, MatDatepickerToggle } from '@angular/material/datepicker';
 import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatOption, MatSelect, MatSelectModule } from '@angular/material/select';
+import { MatOption, MatSelectModule } from '@angular/material/select';
 import { AdminService } from '../../admin-service/admin.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-post-student',
@@ -27,7 +28,8 @@ export class PostStudentComponent implements OnInit{
 
   constructor(
     private service: AdminService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private snack: MatSnackBar
   ){}
 
   confirmationValidator = (control: FormControl):{
@@ -61,9 +63,12 @@ export class PostStudentComponent implements OnInit{
     console.log('Authorization Header:', this.service.createAuthorizationHeader().get('Authorization'));
     this.isSpinning = true;
     this.service.addStudent(this.validateForm.value).subscribe((res)=>{
-      console.log(res);
+      this.isSpinning = false;
+      if(res.id != null){
+        this.snack.open("Student created successfully", "Close", {duration: 5000});
+      }else{
+        this.snack.open("Student already exist!", "Close", {duration: 5000});
+      }
     })
   }
-
- 
 }
