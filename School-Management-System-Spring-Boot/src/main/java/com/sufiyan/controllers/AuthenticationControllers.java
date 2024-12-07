@@ -39,7 +39,7 @@ public class AuthenticationControllers {
 	private UserRepository userRepo;
 	
 	private static final String TOKEN_PREFIX = "Bearer ";
-	private static final String HEADER_STRING = "Authorization ";
+	private static final String HEADER_STRING = "Authorization";
 	
 	@PostMapping("/authenticate")
 	public void createAuthenticationToken(@RequestBody AuthenticationRequest auth, HttpServletResponse response) throws IOException, JSONException {
@@ -69,5 +69,6 @@ public class AuthenticationControllers {
 		response.setHeader("Access-Control-Expose-Headers", "Authorization");
 		response.setHeader("Access-Control-Allow-Headers", "Authorization, X-Pingother, Origin, X-Requested-With, Content-Type, Accept, X-Custom-header");
 		response.setHeader(HEADER_STRING, TOKEN_PREFIX + jwt);
+		System.out.println("Generated header is: "+response.getHeader(HEADER_STRING));
 	}
 }
