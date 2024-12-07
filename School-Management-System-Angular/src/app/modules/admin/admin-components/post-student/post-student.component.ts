@@ -62,13 +62,21 @@ export class PostStudentComponent implements OnInit{
     console.log(this.validateForm.value)
     console.log('Authorization Header:', this.service.createAuthorizationHeader().get('Authorization'));
     this.isSpinning = true;
-    this.service.addStudent(this.validateForm.value).subscribe((res)=>{
-      this.isSpinning = false;
-      if(res.id != null){
-        this.snack.open("Student created successfully", "Close", {duration: 5000});
-      }else{
-        this.snack.open("Student already exist!", "Close", {duration: 5000});
+    this.service.addStudent(this.validateForm.value).subscribe({
+      next: (res) =>{
+        this.isSpinning = false;
+        if(res.id != null){
+          this.snack.open("Student created successfully", "Close", { duration: 5000 });
+        }
+      },
+      error: (err)=>{
+        this.isSpinning = false;
+        if(err.status === 409){ // 409 for conflict status
+          this.snack.open("Student already exists!", "Close", { duration: 5000 });
+        }else{
+          this.snack.open("An error occurred. Please try again.", "Close", { duration: 5000 });
+        }
       }
-    })
+    });
   }
 }
