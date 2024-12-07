@@ -8,6 +8,7 @@ import { MatOption, MatSelect, MatSelectModule } from '@angular/material/select'
 import { AdminService } from '../../admin-service/admin.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-post-student',
@@ -27,7 +28,8 @@ export class PostStudentComponent implements OnInit{
 
   constructor(
     private service: AdminService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private snack: MatSnackBar
   ){}
 
   confirmationValidator = (control: FormControl):{
@@ -61,9 +63,12 @@ export class PostStudentComponent implements OnInit{
     console.log('Authorization Header:', this.service.createAuthorizationHeader().get('Authorization'));
     this.isSpinning = true;
     this.service.addStudent(this.validateForm.value).subscribe((res)=>{
-      console.log(res);
+      this.isSpinning = false;
+      if(res.id != null){
+        this.snack.open("Student created successfully", "Close", {duration: 5000});
+      }else{
+        this.snack.open("Student already exist!", "Close", {duration: 5000});
+      }
     })
   }
-
- 
 }
