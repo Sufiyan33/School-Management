@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AdminService } from '../../admin-service/admin.service';
 
 @Component({
   selector: 'app-all-students',
@@ -7,6 +8,17 @@ import { Component } from '@angular/core';
   templateUrl: './all-students.component.html',
   styleUrl: './all-students.component.css'
 })
-export class AllStudentsComponent {
+export class AllStudentsComponent implements OnInit {
 
+  constructor(private service: AdminService){}
+
+  ngOnInit(): void {
+    this.getAllStudents();
+  }
+
+  getAllStudents(){
+    this.service.getAllStudent().subscribe((res)=>{
+      console.log(res);
+    })
+  }
 }
