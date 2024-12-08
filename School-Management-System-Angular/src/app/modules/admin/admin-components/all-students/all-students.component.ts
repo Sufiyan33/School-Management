@@ -1,16 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminService } from '../../admin-service/admin.service';
 import { MatCardModule } from '@angular/material/card';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-all-students',
   standalone: true,
-  imports: [MatCardModule],
+  imports: [MatCardModule, CommonModule],
   templateUrl: './all-students.component.html',
   styleUrl: './all-students.component.css'
 })
 export class AllStudentsComponent implements OnInit {
 
+  students: any;
   constructor(private service: AdminService){}
 
   ngOnInit(): void {
@@ -20,6 +22,7 @@ export class AllStudentsComponent implements OnInit {
   getAllStudents(){
     this.service.getAllStudent().subscribe((res)=>{
       console.log(res);
+      this.students = res;
     })
   }
 }
