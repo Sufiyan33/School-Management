@@ -2,6 +2,7 @@ package com.sufiyan.entities;
 
 import java.util.Date;
 
+import com.sufiyan.dto.StudentDto;
 import com.sufiyan.enums.UserRole;
 
 import jakarta.persistence.Entity;
@@ -27,6 +28,20 @@ public class User {
 	private String address;
 	private String gender;
 	private UserRole role;
+	
+	public StudentDto getStudentDto() {
+		StudentDto studentDto = new StudentDto();
+		studentDto.setId(id);
+		studentDto.setName(name);
+		studentDto.setEmail(email);
+		studentDto.setAddress(address);
+		studentDto.setDob(dob);
+		studentDto.setStudentClass(StudentClass);
+		studentDto.setGender(gender);
+		studentDto.setFatherName(fatherName);
+		studentDto.setMotherName(motherName);
+		return studentDto;
+	}
 	
 	public String getFatherName() {
 		return fatherName;
