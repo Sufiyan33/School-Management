@@ -17,6 +17,12 @@ export class AdminService {
     });
   }
 
+  getAllStudent(): Observable<any>{
+    return this.http.get<[]>(Constant.BASIC_URL + "api/admin/students", {
+      headers: this.createAuthorizationHeader()
+    })
+  }
+
   createAuthorizationHeader(): HttpHeaders{
     let authHeaders: HttpHeaders = new HttpHeaders();
     let token = StorageService.getToken();
