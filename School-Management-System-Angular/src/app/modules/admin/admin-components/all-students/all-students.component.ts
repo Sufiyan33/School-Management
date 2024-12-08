@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminService } from '../../admin-service/admin.service';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-all-students',
   standalone: true,
-  imports: [],
+  imports: [MatCardModule],
   templateUrl: './all-students.component.html',
   styleUrl: './all-students.component.css'
 })
