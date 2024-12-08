@@ -1,16 +1,16 @@
 <div class="card-container" fxLayout="row" fxLayout.xs="column" fxLayoutGap="16px">
-    <mat-card class="student-card">
+    <mat-card class="student-card" *ngFor="let student of students">
         <mat-card-header style="background-color: #3f51b5;"> 
-            <mat-card-title style="color: white;">Name</mat-card-title>
-            <mat-card-subtitle style="color: white;">Class:</mat-card-subtitle>
+            <mat-card-title style="color: white;">Name <strong>{{student.name}}</strong></mat-card-title>
+            <mat-card-subtitle style="color: white;">Class: {{student.studentClass}}</mat-card-subtitle>
         </mat-card-header>
         <mat-card-content style="margin-top: 10px;">
-            <p>Email: </p>
-            <p>Father Name: </p>
-            <p>Mother Name: </p>
-            <p>Date of Birth: </p>
-            <p>Gender: </p>
-            <p>Address: </p>
+            <p>Email: <strong>{{student.email}}</strong></p>
+            <p>Father Name: {{student.fatherName}}</p>
+            <p>Mother Name: {{student.motherName}}</p>
+            <p>Date of Birth: {{student.dateOfBirth}}</p>
+            <p>Gender: {{student.gender}}</p>
+            <p>Address: {{student.address}}</p>
         </mat-card-content>
     </mat-card>
 </div>
