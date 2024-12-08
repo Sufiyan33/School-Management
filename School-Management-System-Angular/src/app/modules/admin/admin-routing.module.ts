@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './admin-components/dashboard/dashboard.component';
 import { adminGuard } from '../../auth/guards/admin-guard/admin.guard';
 import { PostStudentComponent } from './admin-components/post-student/post-student.component';
+import { AllStudentsComponent } from './admin-components/all-students/all-students.component';
 
 const routes: Routes = [
   {
@@ -13,6 +14,11 @@ const routes: Routes = [
   {
     path: 'student',
     component: PostStudentComponent,
+    canActivate: [adminGuard]
+  },
+  {
+    path: 'students',
+    component: AllStudentsComponent,
     canActivate: [adminGuard]
   }
 ];
