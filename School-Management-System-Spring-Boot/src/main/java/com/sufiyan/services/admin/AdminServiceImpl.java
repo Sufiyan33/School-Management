@@ -1,6 +1,8 @@
 package com.sufiyan.services.admin;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -57,5 +59,10 @@ public class AdminServiceImpl implements AdminService {
 		createdStudentDto.setId(createdUser.getId());
 		createdStudentDto.setEmail(createdUser.getEmail());
 		return createdStudentDto;
+	}
+
+	@Override
+	public List<StudentDto> getAllStudents() {
+		return userRepo.findAllByRole(UserRole.STUDENT).stream().map(User::getStudentDto).collect(Collectors.toList());
 	}
 }
