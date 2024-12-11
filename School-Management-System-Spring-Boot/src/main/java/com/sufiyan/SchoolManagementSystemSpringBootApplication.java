@@ -9,4 +9,6 @@ public class SchoolManagementSystemSpringBootApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SchoolManagementSystemSpringBootApplication.class, args);
 	}
+
+	//Added commend at December11, 2024
 }
