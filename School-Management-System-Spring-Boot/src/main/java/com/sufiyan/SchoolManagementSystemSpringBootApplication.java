@@ -10,7 +10,8 @@ public class SchoolManagementSystemSpringBootApplication {
 		SpringApplication.run(SchoolManagementSystemSpringBootApplication.class, args);
 	}
 
-	//Added commend at December11, 2024
+	// Added commend at December11, 2024
 	// Added comment ay Decemeber12, 2024
 	// Added comment ay Decemeber13, 2024
+	// Added comment ay Decemeber14, 2024
 }
