@@ -13,6 +13,9 @@
                 <p>Gender: {{student.gender}}</p>
                 <p>Address: {{student.address}}</p>
             </mat-card-content>
+            <mat-card-actions>
+                <button mat-button color="warn" (click)="deleteStudent(student.id)">Delete</button>
+            </mat-card-actions>
         </mat-card>
     }
 </div>
