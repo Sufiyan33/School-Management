@@ -25,4 +25,10 @@ export class AllStudentsComponent implements OnInit {
       this.students = res;
     })
   }
+
+  deleteStudent(studentId: number){
+    this.service.deleteStudent(studentId).subscribe((res) =>{
+      console.log(res);
+    })
+  }
 }
