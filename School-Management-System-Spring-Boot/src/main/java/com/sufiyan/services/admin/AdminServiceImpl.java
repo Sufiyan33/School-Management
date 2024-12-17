@@ -65,4 +65,9 @@ public class AdminServiceImpl implements AdminService {
 	public List<StudentDto> getAllStudents() {
 		return userRepo.findAllByRole(UserRole.STUDENT).stream().map(User::getStudentDto).collect(Collectors.toList());
 	}
+
+	@Override
+	public void deleteStudent(Long studentId) {
+		userRepo.deleteById(studentId);
+	}
 }
