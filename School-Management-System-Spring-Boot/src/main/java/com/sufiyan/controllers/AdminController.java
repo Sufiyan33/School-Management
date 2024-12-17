@@ -45,9 +45,9 @@ public class AdminController {
 		return ResponseEntity.ok(allStudents);
 	}
 	
-	@DeleteMapping("/student/{studetnId}")
-	public ResponseEntity<Void> deleteStudent(@PathVariable Long studentId) {
-		adminService.deleteStudent(studentId);
+	@DeleteMapping("/student/{id}")
+	public ResponseEntity<Void> deleteStudent(@PathVariable Long id) {
+		adminService.deleteStudent(id);
 		return ResponseEntity.noContent().build();
 	}
 }
