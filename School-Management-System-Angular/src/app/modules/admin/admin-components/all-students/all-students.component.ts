@@ -3,6 +3,7 @@ import { AdminService } from '../../admin-service/admin.service';
 import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-all-students',
@@ -14,7 +15,8 @@ import { MatButtonModule } from '@angular/material/button';
 export class AllStudentsComponent implements OnInit {
 
   students: any;
-  constructor(private service: AdminService){}
+  constructor(private service: AdminService, 
+    private snackBar: MatSnackBar){}
 
   ngOnInit(): void {
     this.getAllStudents();
@@ -30,6 +32,10 @@ export class AllStudentsComponent implements OnInit {
   deleteStudent(studentId: number){
     this.service.deleteStudent(studentId).subscribe((res) =>{
       console.log(res);
+      this.getAllStudents();
+      this.snackBar.open("Student Deleted Successfully", "Close", {
+        duration: 5000
+      })
     })
   }
 }
