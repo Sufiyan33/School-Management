@@ -15,7 +15,6 @@ import jakarta.persistence.Table;
 @Table(name = "users")
 public class User {
 
-	//Adding comment here so that I can merge this branch to master
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
