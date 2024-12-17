@@ -23,6 +23,14 @@ export class AdminService {
     })
   }
 
+  deleteStudent(studentId: any): Observable<any>{
+    return this.http.delete<[]>(Constant.BASIC_URL + `api/admin/student/${studentId}`, 
+      {
+        headers: this.createAuthorizationHeader()
+      }
+    )
+  }
+  
   createAuthorizationHeader(): HttpHeaders{
     let authHeaders: HttpHeaders = new HttpHeaders();
     let token = StorageService.getToken();
@@ -35,5 +43,4 @@ export class AdminService {
       'Authorization', 'Bearer ' + token,
     );
   }
-
 }
