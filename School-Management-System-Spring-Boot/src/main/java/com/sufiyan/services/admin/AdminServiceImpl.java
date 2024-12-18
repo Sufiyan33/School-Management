@@ -74,7 +74,9 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public SingleStudentDto getStudentById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		Optional<User> existingUser = userRepo.findById(id);
+		SingleStudentDto singleStudentDto = new SingleStudentDto();
+		existingUser.ifPresent(user -> singleStudentDto.setStudentDto(user.getStudentDto()));
+		return singleStudentDto;
 	}
 }
