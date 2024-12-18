@@ -15,4 +15,10 @@ export class UpdateStudentComponent {
     private activatedRouted: ActivatedRoute){}
 
   studentId: number = this.activatedRouted.snapshot.params['studentId']
+
+  getStudentById(){
+    this.service.getStudentById(this.studentId).subscribe((res)=>{
+      console.log(res)
+    })
+  }
 }
