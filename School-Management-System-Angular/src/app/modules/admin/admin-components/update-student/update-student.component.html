@@ -2,7 +2,7 @@
     <mat-spinner *ngIf="isSpinning" [diameter]="50" class="spinner"></mat-spinner>
     <div class="parent">
         <div class="child">
-            <h1 class="form-title">Post Student</h1>
+            <h1 class="form-title">Update Student</h1>
             <form class="login-form" [formGroup]="validateForm">
                 <mat-form-field appearance="outline" class="form-field">
                     <mat-label>Email</mat-label>
@@ -42,7 +42,7 @@
                         <mat-option *ngFor="let gender of GENDER" [value]="gender">{{gender}}</mat-option>
                     </mat-select>
                 </mat-form-field>
-                <button mat-raised-button color="primary" [disabled]="validateForm.invalid"></button>
+                <button mat-raised-button color="primary" [disabled]="validateForm.invalid">Update</button>
             </form>
         </div>
     </div>

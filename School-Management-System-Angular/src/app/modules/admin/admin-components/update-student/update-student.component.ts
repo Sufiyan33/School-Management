@@ -47,6 +47,8 @@ export class UpdateStudentComponent implements OnInit{
   }
   getStudentById(){
     this.service.getStudentById(this.studentId).subscribe((res)=>{
+      const student = res.studentDto;
+      this.validateForm.patchValue(student);
       console.log(res)
     })
   }
