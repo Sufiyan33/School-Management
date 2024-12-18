@@ -8,6 +8,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.sufiyan.dto.SingleStudentDto;
 import com.sufiyan.dto.StudentDto;
 import com.sufiyan.entities.User;
 import com.sufiyan.enums.UserRole;
@@ -69,5 +70,13 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public void deleteStudent(Long studentId) {
 		userRepo.deleteById(studentId);
+	}
+
+	@Override
+	public SingleStudentDto getStudentById(Long id) {
+		Optional<User> existingUser = userRepo.findById(id);
+		SingleStudentDto singleStudentDto = new SingleStudentDto();
+		existingUser.ifPresent(user -> singleStudentDto.setStudentDto(user.getStudentDto()));
+		return singleStudentDto;
 	}
 }

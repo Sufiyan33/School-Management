@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.sufiyan.dto.SingleStudentDto;
 import com.sufiyan.dto.StudentDto;
 import com.sufiyan.exceptions.StudentAlreadyExistsException;
 import com.sufiyan.services.admin.AdminService;
@@ -43,6 +44,14 @@ public class AdminController {
 	public ResponseEntity<List<StudentDto>> getAllStudents(){
 		List<StudentDto> allStudents = adminService.getAllStudents();
 		return ResponseEntity.ok(allStudents);
+	}
+	
+	@GetMapping("/student/{id}")
+	public ResponseEntity<SingleStudentDto> getStudentById(@PathVariable Long id){
+		SingleStudentDto singleStudentDto = adminService.getStudentById(id);
+		if(singleStudentDto == null)
+			return ResponseEntity.notFound().build();
+		return ResponseEntity.ok(singleStudentDto);
 	}
 	
 	@DeleteMapping("/student/{id}")
