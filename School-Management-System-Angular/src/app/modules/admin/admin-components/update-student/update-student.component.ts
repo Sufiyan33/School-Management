@@ -12,6 +12,7 @@ import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-update-student',
+  standalone: true,
   imports: [MatProgressSpinnerModule, MatFormFieldModule, MatLabel, MatSelectModule, 
       MatOption, MatDatepickerModule, MatDatepickerToggle, CommonModule, ReactiveFormsModule, FormsModule,
       MatButtonModule, MatInputModule],
