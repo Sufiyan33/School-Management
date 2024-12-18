@@ -23,8 +23,6 @@ export class UpdateStudentComponent implements OnInit{
     this.validateForm = this.fb.group({
       email: ['', Validators.required],
       name: ['', Validators.required],
-      password: ['', Validators.required],
-      checkPassword: ['', [Validators.required, this.confirmationValidator]],
       fatherName: ['', Validators.required],
       motherName: ['', Validators.required],
       studentClass: ['', Validators.required],
