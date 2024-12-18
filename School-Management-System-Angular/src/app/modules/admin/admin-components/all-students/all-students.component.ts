@@ -4,11 +4,12 @@ import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-all-students',
   standalone: true,
-  imports: [MatCardModule, CommonModule, MatButtonModule],
+  imports: [MatCardModule, CommonModule, MatButtonModule, RouterModule],
   templateUrl: './all-students.component.html',
   styleUrl: './all-students.component.css'
 })
