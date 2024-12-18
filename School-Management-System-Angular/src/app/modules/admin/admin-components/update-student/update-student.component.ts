@@ -1,11 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminService } from '../../admin-service/admin.service';
 import { ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
+import { MatOption, MatSelectModule } from '@angular/material/select';
+import { CommonModule } from '@angular/common';
+import { MatDatepickerModule, MatDatepickerToggle } from '@angular/material/datepicker';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-update-student',
-  imports: [],
+  imports: [MatProgressSpinnerModule, MatFormFieldModule, MatLabel, MatSelectModule, 
+      MatOption, MatDatepickerModule, MatDatepickerToggle, CommonModule, ReactiveFormsModule, FormsModule,
+      MatButtonModule, MatInputModule],
   templateUrl: './update-student.component.html',
   styleUrl: './update-student.component.css'
 })
