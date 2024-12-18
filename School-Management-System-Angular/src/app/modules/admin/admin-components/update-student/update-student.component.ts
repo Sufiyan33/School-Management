@@ -18,6 +18,9 @@ export class UpdateStudentComponent implements OnInit{
 
   studentId!:number;
   validateForm: FormGroup;
+  isSpinning: boolean;
+  CLASS: string[]= ["play", "1st", "2nd","3rd","4th","5th", "6th", "7th","8th", "9th", "10th", "11th", "12th"];
+  GENDER: string[]= ["Male", "Female", "Not specified"];
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({
