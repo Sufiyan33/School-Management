@@ -14,9 +14,10 @@ export class UpdateStudentComponent implements OnInit{
     private service: AdminService,
     private activatedRouted: ActivatedRoute){}
 
-  studentId: number = this.activatedRouted.snapshot.params['studentId']
+  studentId!:number;
 
   ngOnInit(): void {
+   this.studentId = this.activatedRouted.snapshot.params['studentId']
    this.getStudentById();
   }
   getStudentById(){
