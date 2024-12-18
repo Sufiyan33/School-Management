@@ -1,1 +1,57 @@
-<p>update-student works!</p>
+<div class="bg" style="margin-top: 300px;">
+    <mat-spinner *ngIf="isSpinning" [diameter]="50" class="spinner"></mat-spinner>
+    <div class="parent">
+        <div class="child">
+            <h1 class="form-title">Post Student</h1>
+            <form class="login-form" [formGroup]="validateForm">
+                <mat-form-field appearance="outline" class="form-field">
+                    <mat-label>Email</mat-label>
+                    <input matInput type="email" placeholder="Enter email" formControlName="email">
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="form-field">
+                    <mat-label>Password</mat-label>
+                    <input matInput type="password" placeholder="password" formControlName="password">
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="form-field">
+                    <mat-label>Confirm Password</mat-label>
+                    <input matInput type="password" placeholder="confirm password" formControlName="checkPassword">
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="form-field">
+                    <mat-label>Name</mat-label>
+                    <input matInput type="text" placeholder="Enter name" formControlName="name">
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="form-field">
+                    <mat-label>Father Name</mat-label>
+                    <input matInput type="text" placeholder="Father name" formControlName="fatherName">
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="form-field">
+                    <mat-label>Mother Name</mat-label>
+                    <input matInput type="text" placeholder="Mother name" formControlName="motherName">
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="form-field">
+                    <mat-label>Student Class</mat-label>
+                    <mat-select placeholder="select a student class" formControlName="studentClass">
+                        <mat-option *ngFor="let class of CLASS" [value]="class">{{class}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="form-field">
+                    <mat-label>Date of Birth</mat-label>
+                    <input matInput [matDatepicker]="picker" placeholder="choose a date" formControlName="dateOfBirth">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="form-field">
+                    <mat-label>Address</mat-label>
+                    <textarea matInput placeholder="address" formControlName="address"></textarea>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="form-field">
+                    <mat-label>Gender</mat-label>
+                    <mat-select formControlName="gender" placeholder="select a gender">
+                        <mat-option *ngFor="let gender of GENDER" [value]="gender">{{gender}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <button mat-raised-button color="primary" [disabled]="validateForm.invalid" (click)="postStudent()">Add Student</button>
+            </form>
+        </div>
+    </div>
+</div>
