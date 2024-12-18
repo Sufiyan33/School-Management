@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AdminService } from '../../admin-service/admin.service';
 import { ActivatedRoute } from '@angular/router';
 
@@ -8,7 +8,7 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './update-student.component.html',
   styleUrl: './update-student.component.css'
 })
-export class UpdateStudentComponent {
+export class UpdateStudentComponent implements OnInit{
   
   constructor(
     private service: AdminService,
@@ -16,6 +16,9 @@ export class UpdateStudentComponent {
 
   studentId: number = this.activatedRouted.snapshot.params['studentId']
 
+  ngOnInit(): void {
+   this.getStudentById();
+  }
   getStudentById(){
     this.service.getStudentById(this.studentId).subscribe((res)=>{
       console.log(res)
