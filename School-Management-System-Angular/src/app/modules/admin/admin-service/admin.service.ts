@@ -17,6 +17,11 @@ export class AdminService {
     });
   }
 
+  getStudentById(studentId: number): Observable<any>{
+    return this.http.get<[]>(Constant.BASIC_URL + `api/admin/student/${studentId}`, {
+      headers: this.createAuthorizationHeader()
+    }) 
+  }
   getAllStudent(): Observable<any>{
     return this.http.get<[]>(Constant.BASIC_URL + "api/admin/students", {
       headers: this.createAuthorizationHeader()
