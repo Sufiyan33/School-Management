@@ -53,4 +53,10 @@ export class UpdateStudentComponent implements OnInit{
       console.log(res)
     })
   }
+
+  updatedStudent(){
+    this.service.updateStudent(this.studentId, this.validateForm.value).subscribe((res)=>{
+      console.log(res);
+    });
+  }
 }
