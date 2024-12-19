@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
 import { MatDatepickerModule, MatDatepickerToggle } from '@angular/material/datepicker';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-update-student',
@@ -24,7 +25,8 @@ export class UpdateStudentComponent implements OnInit{
   constructor(
     private service: AdminService,
     private activatedRouted: ActivatedRoute,
-    private fb: FormBuilder){}
+    private fb: FormBuilder,
+    private snackBar: MatSnackBar){}
 
   studentId!:number;
   validateForm: FormGroup;
@@ -52,5 +54,20 @@ export class UpdateStudentComponent implements OnInit{
       this.validateForm.patchValue(student);
       console.log(res)
     })
+  }
+
+  updatedStudent(){
+    this.service.updateStudent(this.studentId, this.validateForm.value).subscribe((res)=>{
+      console.log(res);
+      if(res.id != null){
+        this.snackBar.open("Student record updated successfully", "Close", {
+          duration: 5000
+        })
+      }else{
+        this.snackBar.open("Student record not found!!!", "Close", {
+          duration: 5000
+        })
+      }
+    });
   }
 }
