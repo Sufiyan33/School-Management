@@ -54,6 +54,18 @@ public class AdminController {
 		return ResponseEntity.ok(singleStudentDto);
 	}
 	
+	@PostMapping("/student/{id}")
+	public ResponseEntity<?> updateStendent(@PathVariable Long id, @RequestBody StudentDto studentDto){
+		try {
+			StudentDto updatedStudent = adminService.updateStudent(id, studentDto);
+			return ResponseEntity.status(HttpStatus.CREATED).body(updatedStudent);
+		}catch(StudentAlreadyExistsException e) {
+			return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
+		}catch(Exception e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Something went wrong...");
+		}
+	}
+	
 	@DeleteMapping("/student/{id}")
 	public ResponseEntity<Void> deleteStudent(@PathVariable Long id) {
 		adminService.deleteStudent(id);

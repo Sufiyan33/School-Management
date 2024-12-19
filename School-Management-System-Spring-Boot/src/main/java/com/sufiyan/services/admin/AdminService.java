@@ -14,4 +14,6 @@ public interface AdminService {
 	void deleteStudent(Long studentId);
 
 	SingleStudentDto getStudentById(Long id);
+
+	StudentDto updateStudent(Long id, StudentDto studentDto);
 }

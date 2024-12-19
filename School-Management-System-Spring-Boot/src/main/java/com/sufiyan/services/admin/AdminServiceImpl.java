@@ -79,4 +79,25 @@ public class AdminServiceImpl implements AdminService {
 		existingUser.ifPresent(user -> singleStudentDto.setStudentDto(user.getStudentDto()));
 		return singleStudentDto;
 	}
+
+	@Override
+	public StudentDto updateStudent(Long id, StudentDto studentDto) {
+		Optional<User> existingStudent = userRepo.findById(id);
+		if(existingStudent.isPresent()) {
+			User user = existingStudent.get();
+			user.setName(studentDto.getName());
+			user.setFatherName(studentDto.getFatherName());
+			user.setMotherName(studentDto.getMotherName());
+			user.setGender(studentDto.getGender());
+			user.setAddress(studentDto.getAddress());
+			user.setDob(studentDto.getDob());
+			user.setEmail(studentDto.getEmail());
+			user.setStudentClass(studentDto.getStudentClass());
+			User updatedStudent = userRepo.save(user);
+			StudentDto updateStudentDto = new StudentDto();
+			updateStudentDto.setId(updatedStudent.getId());
+			return updateStudentDto;
+		}
+		return null;
+	}
 }
