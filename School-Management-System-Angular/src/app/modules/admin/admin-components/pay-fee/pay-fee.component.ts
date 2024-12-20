@@ -8,12 +8,13 @@ import { AdminService } from '../../admin-service/admin.service';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-pay-fee',
   standalone: true,
   imports: [MatProgressSpinnerModule, MatFormFieldModule, MatLabel, MatSelectModule, 
-      MatOption, CommonModule, ReactiveFormsModule, FormsModule, MatInputModule],
+      MatOption, CommonModule, ReactiveFormsModule, FormsModule, MatInputModule, MatButtonModule],
   templateUrl: './pay-fee.component.html',
   styleUrl: './pay-fee.component.css'
 })
