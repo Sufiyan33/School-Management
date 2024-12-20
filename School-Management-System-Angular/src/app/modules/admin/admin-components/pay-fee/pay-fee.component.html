@@ -23,7 +23,7 @@
                     <input matInput type="text" placeholder="Enter name" formControlName="name">
                     <textarea matInput placeholder="Description" formControlName="description"></textarea>
                 </mat-form-field>
-                <button mat-raised-button color="primary" [disabled]="validateForm.invalid">Pay Fee</button>
+                <button mat-raised-button color="primary" [disabled]="validateForm.invalid" (cancel)="payFee()">Pay Fee</button>
             </form>
         </div>
     </div>
