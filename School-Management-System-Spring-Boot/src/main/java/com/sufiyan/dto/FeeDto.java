@@ -10,7 +10,7 @@ public class FeeDto {
 	private Long amount;
 	private String description;
 	private Date creationDate;
-	private Long userId;
+	private Long studentId;
 	
 	public Long getId() {
 		return id;
@@ -48,15 +48,16 @@ public class FeeDto {
 	public void setCreationDate(Date creationDate) {
 		this.creationDate = creationDate;
 	}
-	public Long getUserId() {
-		return userId;
+	public Long getStudentId() {
+		return studentId;
 	}
-	public void setUserId(Long userId) {
-		this.userId = userId;
+	public void setStudentId(Long studentId) {
+		this.studentId = studentId;
 	}
+	
 	@Override
 	public String toString() {
 		return "FeeDto [id=" + id + ", month=" + month + ", givenBy=" + givenBy + ", amount=" + amount
-				+ ", description=" + description + ", creationDate=" + creationDate + ", userId=" + userId + "]";
+				+ ", description=" + description + ", creationDate=" + creationDate + ", studentId=" + studentId + "]";
 	}
 }
