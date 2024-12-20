@@ -20,7 +20,6 @@
                 </mat-form-field>
                 <mat-form-field appearance="outline" class="form-field">
                     <mat-label>Description</mat-label>
-                    <input matInput type="text" placeholder="Enter name" formControlName="name">
                     <textarea matInput placeholder="Description" formControlName="description"></textarea>
                 </mat-form-field>
                 <button mat-raised-button color="primary" [disabled]="validateForm.invalid" (cancel)="payFee()">Pay Fee</button>
