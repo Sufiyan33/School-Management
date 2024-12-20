@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.sufiyan.dto.FeeDto;
 import com.sufiyan.dto.SingleStudentDto;
 import com.sufiyan.dto.StudentDto;
 import com.sufiyan.exceptions.StudentAlreadyExistsException;
@@ -70,5 +71,20 @@ public class AdminController {
 	public ResponseEntity<Void> deleteStudent(@PathVariable Long id) {
 		adminService.deleteStudent(id);
 		return ResponseEntity.noContent().build();
+	}
+	
+	@PostMapping("/fee/{studentId}")
+	public ResponseEntity<?> payFee(@PathVariable Long studentId, @RequestBody FeeDto feeDto){
+		try {
+			FeeDto feePaid = adminService.payFee(studentId, feeDto);
+			if(feePaid == null) {
+				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Something went wrong...");
+			}
+			return ResponseEntity.status(HttpStatus.CREATED).body(feePaid);
+		}catch(StudentAlreadyExistsException e) {
+			return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
+		}catch(Exception e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Something went wrong...");
+		}
 	}
 }

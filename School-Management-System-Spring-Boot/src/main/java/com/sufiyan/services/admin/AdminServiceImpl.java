@@ -1,5 +1,6 @@
 package com.sufiyan.services.admin;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -8,11 +9,14 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.sufiyan.dto.FeeDto;
 import com.sufiyan.dto.SingleStudentDto;
 import com.sufiyan.dto.StudentDto;
+import com.sufiyan.entities.Fee;
 import com.sufiyan.entities.User;
 import com.sufiyan.enums.UserRole;
 import com.sufiyan.exceptions.StudentAlreadyExistsException;
+import com.sufiyan.repositories.FeeRepository;
 import com.sufiyan.repositories.UserRepository;
 
 import jakarta.annotation.PostConstruct;
@@ -21,9 +25,11 @@ import jakarta.annotation.PostConstruct;
 public class AdminServiceImpl implements AdminService {
 
 	private final UserRepository userRepo;
+	private final FeeRepository feeRepository;
 
-	public AdminServiceImpl(UserRepository userRepo) {
+	public AdminServiceImpl(UserRepository userRepo, FeeRepository feeRepository) {
 		this.userRepo = userRepo;
+		this.feeRepository = feeRepository;
 	}
 
 	/*
@@ -98,6 +104,26 @@ public class AdminServiceImpl implements AdminService {
 			updateStudentDto.setId(updatedStudent.getId());
 			return updateStudentDto;
 		}
+		return null;
+	}
+
+	@Override
+	public FeeDto payFee(Long studentId, FeeDto feeDto) {
+		Optional<User> optionalStudent = userRepo.findById(studentId);
+		if(optionalStudent.isPresent()) {
+			Fee fee = new Fee();
+			fee.setAmount(feeDto.getAmount());
+			fee.setMonth(feeDto.getMonth());
+			fee.setDescription(feeDto.getDescription());
+			fee.setCreationDate(new Date());
+			fee.setGivenBy(feeDto.getGivenBy());
+			fee.setUser(optionalStudent.get());
+			Fee paidFee = feeRepository.save(fee);
+			FeeDto paidFeeDto = new FeeDto();
+			paidFeeDto.setId(paidFee.getId());
+			return paidFeeDto;
+		}
+			
 		return null;
 	}
 }
