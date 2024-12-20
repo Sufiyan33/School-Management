@@ -5,6 +5,7 @@ import { adminGuard } from '../../auth/guards/admin-guard/admin.guard';
 import { PostStudentComponent } from './admin-components/post-student/post-student.component';
 import { AllStudentsComponent } from './admin-components/all-students/all-students.component';
 import { UpdateStudentComponent } from './admin-components/update-student/update-student.component';
+import { PayFeeComponent } from './admin-components/pay-fee/pay-fee.component';
 
 const routes: Routes = [
   {
@@ -25,6 +26,11 @@ const routes: Routes = [
   {
     path: 'student/:studentId',
     component: UpdateStudentComponent,
+    canActivate: [adminGuard]
+  },
+  {
+    path: 'fee',
+    component: PayFeeComponent,
     canActivate: [adminGuard]
   }
 ];
