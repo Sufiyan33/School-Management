@@ -42,6 +42,8 @@ export class PayFeeComponent implements OnInit{
   }
 
   payFee(){
-    console.log(this.validateForm.value)
+    this.service.payFee(this.studentId, this.validateForm.value).subscribe((res)=>{
+      console.log(res);
+    })
   }
 }
