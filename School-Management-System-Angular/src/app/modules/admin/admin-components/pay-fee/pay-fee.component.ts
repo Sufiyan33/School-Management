@@ -9,6 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-pay-fee',
@@ -22,7 +23,8 @@ export class PayFeeComponent implements OnInit{
 
   constructor(private service: AdminService,
     private activatedRouted: ActivatedRoute,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private snackBar: MatSnackBar
   ){}
 
   studentId!:number;
@@ -44,6 +46,15 @@ export class PayFeeComponent implements OnInit{
   payFee(){
     this.service.payFee(this.studentId, this.validateForm.value).subscribe((res)=>{
       console.log(res);
+      if(res.id != null){
+        this.snackBar.open("Fees paid successfully", "Close", {
+          duration: 5000
+        })
+      }else{
+        this.snackBar.open("Something went wrong!", "Close", {
+          duration: 5000
+        })
+      }
     })
   }
 }
