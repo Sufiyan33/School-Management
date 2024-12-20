@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatOption } from '@angular/material/core';
 import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
@@ -14,13 +14,17 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './pay-fee.component.html',
   styleUrl: './pay-fee.component.css'
 })
-export class PayFeeComponent {
+export class PayFeeComponent implements OnInit{
 
   constructor(private service: AdminService,
-    private activatedRoute: ActivatedRoute,
+    private activatedRouted: ActivatedRoute,
     private fb: FormBuilder
   ){}
-  
+
+  ngOnInit(): void {
+    this.studentId = this.activatedRouted.snapshot.params['studentId']
+  }
+
   studentId!:number;
   validateForm: FormGroup;
   isSpinning: boolean = false;
