@@ -29,7 +29,7 @@ const routes: Routes = [
     canActivate: [adminGuard]
   },
   {
-    path: 'fee',
+    path: 'fee/:studentId',
     component: PayFeeComponent,
     canActivate: [adminGuard]
   }
