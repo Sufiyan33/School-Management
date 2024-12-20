@@ -41,6 +41,12 @@ export class AdminService {
       headers: this.createAuthorizationHeader(),
     });
   }
+
+  payFee(studentId: number,feeDto: any): Observable<any>{
+    return this.http.post<[]>(Constant.BASIC_URL + `api/admin/fee/${studentId}`, feeDto, {
+      headers: this.createAuthorizationHeader(),
+    });
+  }
   
   createAuthorizationHeader(): HttpHeaders{
     let authHeaders: HttpHeaders = new HttpHeaders();
