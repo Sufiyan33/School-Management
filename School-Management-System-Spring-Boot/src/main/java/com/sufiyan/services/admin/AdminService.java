@@ -18,5 +18,5 @@ public interface AdminService {
 
 	StudentDto updateStudent(Long id, StudentDto studentDto);
 
-	StudentDto payFee(Long studentId, FeeDto feeDto);
+	FeeDto payFee(Long studentId, FeeDto feeDto);
 }

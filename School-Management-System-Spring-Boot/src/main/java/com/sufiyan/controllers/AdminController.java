@@ -76,7 +76,7 @@ public class AdminController {
 	@PostMapping("/fee/{studentId}")
 	public ResponseEntity<?> payFee(@PathVariable Long studentId, @RequestBody FeeDto feeDto){
 		try {
-			StudentDto createdStudent = adminService.payFee(studentId, feeDto);
+			FeeDto createdStudent = adminService.payFee(studentId, feeDto);
 			return ResponseEntity.status(HttpStatus.CREATED).body(createdStudent);
 		}catch(StudentAlreadyExistsException e) {
 			return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());

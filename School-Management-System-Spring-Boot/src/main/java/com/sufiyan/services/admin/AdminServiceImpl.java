@@ -108,7 +108,7 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public StudentDto payFee(Long studentId, FeeDto feeDto) {
+	public FeeDto payFee(Long studentId, FeeDto feeDto) {
 		Optional<User> optionalStudent = userRepo.findById(studentId);
 		if(optionalStudent.isPresent()) {
 			Fee fee = new Fee();
