@@ -15,7 +15,7 @@ import { MatCardModule } from '@angular/material/card';
 })
 export class DashboardComponent implements OnInit{
 
-  student: any;
+  students: any;
   constructor(private service: StudentService){}
 
   ngOnInit(): void {
@@ -25,7 +25,9 @@ export class DashboardComponent implements OnInit{
   getStudentById(){
     this.service.getStudentById().subscribe((res)=>{
       console.log(res);
-      this.student = res.student;
+      const studentDto = res.studentDto;
+      // Ensure `students` is always an array
+      this.students = Array.isArray(studentDto) ? studentDto : [studentDto];
     })
   }
 
