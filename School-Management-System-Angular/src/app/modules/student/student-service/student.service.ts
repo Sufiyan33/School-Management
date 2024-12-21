@@ -11,8 +11,8 @@ export class StudentService {
 
   constructor(private http: HttpClient) { }
 
-  getStudentById(studentId: number): Observable<any>{
-      return this.http.get<[]>(Constant.BASIC_URL + `api/student/${studentId}`, {
+  getStudentById(): Observable<any>{
+      return this.http.get<[]>(Constant.BASIC_URL + `api/student/${StorageService.getUserId()}`, {
         headers: this.createAuthorizationHeader()
     }) 
   }
