@@ -62,4 +62,10 @@ export class StorageService {
     }
     return true;
   }
+
+  static getUserId(){
+    const user = this.getUsers();
+    if(user == null) return '';
+    return user.userId;
+  }
 }
