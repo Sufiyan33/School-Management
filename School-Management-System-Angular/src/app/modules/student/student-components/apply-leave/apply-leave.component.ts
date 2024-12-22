@@ -31,4 +31,11 @@ export class ApplyLeaveComponent implements OnInit{
     });
   }
 
+  applyLeave(){
+    this.isSpinning = true;
+    console.log(this.validateForm.value);
+    this.service.applyLeave(this.validateForm.value).subscribe((res)=>{
+      console.log(res);
+    })
+  }
 }
