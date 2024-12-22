@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-apply-leave',
+  standalone: true,
   imports: [MatProgressSpinnerModule, MatFormFieldModule, MatLabel, 
           CommonModule, ReactiveFormsModule, FormsModule, MatInputModule, MatButtonModule],
   templateUrl: './apply-leave.component.html',
