@@ -12,7 +12,7 @@
                     <mat-label>Body</mat-label>
                     <textarea matInput placeholder="Body" formControlName="body"></textarea>
                 </mat-form-field>
-                <button mat-raised-button color="primary" [disabled]="validateForm.invalid">Submit</button>
+                <button mat-raised-button color="primary" [disabled]="validateForm.invalid" (click)="applyLeave()">Submit</button>
             </form>
         </div>
     </div>
