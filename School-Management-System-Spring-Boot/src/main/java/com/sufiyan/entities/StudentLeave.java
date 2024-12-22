@@ -6,6 +6,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.sufiyan.dto.StudentLeaveDto;
 import com.sufiyan.enums.StudentLeaveStatus;
 
 import jakarta.persistence.Entity;
@@ -33,6 +34,16 @@ public class StudentLeave {
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	private User user;
 
+	public StudentLeaveDto getStudentLeaveDto() {
+		StudentLeaveDto dto = new StudentLeaveDto();
+		dto.setId(id);
+		dto.setSubject(subject);
+		dto.setBody(body);
+		dto.setDate(date);
+		dto.setStudentLeaveStatus(studentLeaveStatus);
+		dto.setUserId(user.getId());
+		return dto;
+	}
 	public Long getId() {
 		return id;
 	}
