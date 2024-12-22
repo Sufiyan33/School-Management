@@ -1,12 +1,16 @@
 package com.sufiyan.controllers;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sufiyan.dto.SingleStudentDto;
+import com.sufiyan.dto.StudentLeaveDto;
 import com.sufiyan.services.student.StudentService;
 
 @RestController
@@ -25,5 +29,13 @@ public class StudentController {
 		if(singleStudentDto == null)
 			return ResponseEntity.notFound().build();
 		return ResponseEntity.ok(singleStudentDto);
+	}
+	
+	@PostMapping("/leave")
+	public ResponseEntity<?> applyLeave(@RequestBody StudentLeaveDto studentLeaveDto){
+		StudentLeaveDto submittedStudentLeave = studentService.applyLeave(studentLeaveDto);
+		if(submittedStudentLeave == null)
+			return new ResponseEntity<>("Something went wrong...", HttpStatus.BAD_REQUEST);
+		return ResponseEntity.status(HttpStatus.CREATED).body(submittedStudentLeave);
 	}
 }
