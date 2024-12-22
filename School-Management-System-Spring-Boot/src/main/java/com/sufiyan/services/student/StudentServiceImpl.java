@@ -1,20 +1,27 @@
 package com.sufiyan.services.student;
 
+import java.util.Date;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
 import com.sufiyan.dto.SingleStudentDto;
+import com.sufiyan.dto.StudentLeaveDto;
+import com.sufiyan.entities.StudentLeave;
 import com.sufiyan.entities.User;
+import com.sufiyan.enums.StudentLeaveStatus;
+import com.sufiyan.repositories.StudentLeaveRepository;
 import com.sufiyan.repositories.UserRepository;
 
 @Service
-public class StudentServiceImpl implements StudentService{
+public class StudentServiceImpl implements StudentService {
 
 	private final UserRepository userRepository;
-	
-	public StudentServiceImpl(UserRepository userRepository) {
+	private final StudentLeaveRepository leaveRepository;
+
+	public StudentServiceImpl(UserRepository userRepository, StudentLeaveRepository leaveRepository) {
 		this.userRepository = userRepository;
+		this.leaveRepository = leaveRepository;
 	}
 
 	@Override
@@ -23,5 +30,23 @@ public class StudentServiceImpl implements StudentService{
 		SingleStudentDto singleStudentDto = new SingleStudentDto();
 		existingUser.ifPresent(user -> singleStudentDto.setStudentDto(user.getStudentDto()));
 		return singleStudentDto;
+	}
+
+	@Override
+	public StudentLeaveDto applyLeave(StudentLeaveDto studentLeaveDto) {
+		Optional<User> existingUser = userRepository.findById(studentLeaveDto.getUserId());
+		if(existingUser.isPresent()) {
+			StudentLeave leave = new StudentLeave();
+			leave.setSubject(studentLeaveDto.getSubject());
+			leave.setBody(studentLeaveDto.getBody());
+			leave.setDate(new Date());
+			leave.setStudentLeaveStatus(StudentLeaveStatus.Pending);
+			leave.setUser(existingUser.get());
+			StudentLeave submittedLeave = leaveRepository.save(leave);
+			StudentLeaveDto leaveDto = new StudentLeaveDto();
+			leaveDto.setId(submittedLeave.getId());
+			return leaveDto;
+		}
+		return null;
 	}
 }
