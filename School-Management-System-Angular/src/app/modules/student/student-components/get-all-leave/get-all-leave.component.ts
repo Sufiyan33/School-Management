@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { StudentService } from '../../student-service/student.service';
 
 @Component({
   selector: 'app-get-all-leave',
@@ -6,6 +7,17 @@ import { Component } from '@angular/core';
   templateUrl: './get-all-leave.component.html',
   styleUrl: './get-all-leave.component.css'
 })
-export class GetAllLeaveComponent {
+export class GetAllLeaveComponent implements OnInit{
 
+  isSpinning: boolean = false;
+  leaves: any;
+  
+    constructor(private service: StudentService,
+    ){}
+
+  ngOnInit(): void {
+    this.getAllLeaves()
+  }
+
+  getAllLeaves(){}
 }
