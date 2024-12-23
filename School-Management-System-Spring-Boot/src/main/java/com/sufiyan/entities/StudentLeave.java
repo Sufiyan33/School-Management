@@ -27,9 +27,9 @@ public class StudentLeave {
 	private String body;
 	private Date date;
 	private StudentLeaveStatus studentLeaveStatus;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name= "user_id", nullable = false)
+	@JoinColumn(name = "user_id", nullable = false)
 	@JsonIgnore
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	private User user;
@@ -44,6 +44,7 @@ public class StudentLeave {
 		dto.setUserId(user.getId());
 		return dto;
 	}
+
 	public Long getId() {
 		return id;
 	}

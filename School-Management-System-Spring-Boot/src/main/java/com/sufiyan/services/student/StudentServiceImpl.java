@@ -54,7 +54,6 @@ public class StudentServiceImpl implements StudentService {
 
 	@Override
 	public List<StudentLeaveDto> getAllAppliedLeaveByStudent(Long userId) {
-
 		return leaveRepository.findAllByUserId(userId).stream().map(StudentLeave::getStudentLeaveDto).collect(Collectors.toList());
 	}
 }
