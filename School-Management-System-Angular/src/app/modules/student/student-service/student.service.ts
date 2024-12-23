@@ -21,6 +21,12 @@ export class StudentService {
     studentLeaveDto.userId = StorageService.getUserId();
     return this.http.post<[]>(Constant.BASIC_URL + `api/student/leave`, studentLeaveDto, {
       headers: this.createAuthorizationHeader()
+    }) 
+  }
+
+  getAllAppliedLeaveByStudent(): Observable<any>{
+    return this.http.get<[]>(Constant.BASIC_URL + `api/student/leave/${StorageService.getUserId()}`, {
+      headers: this.createAuthorizationHeader()
   }) 
 }
 
