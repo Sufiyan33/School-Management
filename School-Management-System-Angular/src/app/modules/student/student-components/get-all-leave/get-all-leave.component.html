@@ -5,8 +5,8 @@
                 <p>Subject: <strong>{{leave.subject}}</strong></p>
                 <p>Body: {{leave.body}}</p>
                 <p>Date: {{leave.date | date: 'MMM d, y'}}</p>
-                <p>Status: <strong [ngStyle]="{'color': leave.leaveStatus === 'APPROVED' ? 
-                    'green' : leave.leaveStatus === 'CANCELLED' ? 'blue' : 'red'}">{{leave.address}}</strong></p>
+                <p>Status: <strong [ngStyle]="{'color': leave.studentLeaveStatus === 'APPROVED' ? 
+                    'green' : leave.studentLeaveStatus === 'CANCELLED' ? 'blue' : 'red'}">{{leave.studentLeaveStatus}}</strong></p>
             </mat-card-content>
         </mat-card>
     }
