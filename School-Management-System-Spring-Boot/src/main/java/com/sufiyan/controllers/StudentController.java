@@ -1,5 +1,7 @@
 package com.sufiyan.controllers;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,5 +39,13 @@ public class StudentController {
 		if(submittedStudentLeave == null)
 			return new ResponseEntity<>("Something went wrong...", HttpStatus.BAD_REQUEST);
 		return ResponseEntity.status(HttpStatus.CREATED).body(submittedStudentLeave);
+	}
+	
+	@GetMapping("/leave/{id}")
+	public ResponseEntity<List<StudentLeaveDto>> getAllAppliedLeaveByStudent(@PathVariable Long id){
+		List<StudentLeaveDto> fetchAllLeave = studentService.getAllAppliedLeaveByStudent(id);
+		if(fetchAllLeave.isEmpty())
+			return ResponseEntity.notFound().build();
+		return ResponseEntity.ok(fetchAllLeave);
 	}
 }

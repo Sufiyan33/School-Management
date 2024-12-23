@@ -1,7 +1,9 @@
 package com.sufiyan.services.student;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
@@ -48,5 +50,10 @@ public class StudentServiceImpl implements StudentService {
 			return leaveDto;
 		}
 		return null;
+	}
+
+	@Override
+	public List<StudentLeaveDto> getAllAppliedLeaveByStudent(Long userId) {
+		return leaveRepository.findAllByUserId(userId).stream().map(StudentLeave::getStudentLeaveDto).collect(Collectors.toList());
 	}
 }
