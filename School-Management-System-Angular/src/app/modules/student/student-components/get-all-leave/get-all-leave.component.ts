@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-get-all-leave',
+  standalone: true,
   imports: [MatProgressSpinnerModule, CommonModule, MatCardModule, RouterModule],
   templateUrl: './get-all-leave.component.html',
   styleUrl: './get-all-leave.component.css'
