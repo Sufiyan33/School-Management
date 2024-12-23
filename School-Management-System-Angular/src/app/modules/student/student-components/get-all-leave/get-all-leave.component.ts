@@ -19,5 +19,12 @@ export class GetAllLeaveComponent implements OnInit{
     this.getAllLeaves()
   }
 
-  getAllLeaves(){}
+  getAllLeaves(){
+    this.isSpinning = true;
+    this.service.getAllAppliedLeaveByStudent().subscribe((res) =>{
+      console.log(res);
+      this.isSpinning = false;
+      this.leaves = res;
+    })
+  }
 }
