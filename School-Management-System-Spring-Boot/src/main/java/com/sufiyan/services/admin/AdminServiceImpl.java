@@ -12,11 +12,14 @@ import org.springframework.stereotype.Service;
 import com.sufiyan.dto.FeeDto;
 import com.sufiyan.dto.SingleStudentDto;
 import com.sufiyan.dto.StudentDto;
+import com.sufiyan.dto.StudentLeaveDto;
 import com.sufiyan.entities.Fee;
+import com.sufiyan.entities.StudentLeave;
 import com.sufiyan.entities.User;
 import com.sufiyan.enums.UserRole;
 import com.sufiyan.exceptions.StudentAlreadyExistsException;
 import com.sufiyan.repositories.FeeRepository;
+import com.sufiyan.repositories.StudentLeaveRepository;
 import com.sufiyan.repositories.UserRepository;
 
 import jakarta.annotation.PostConstruct;
@@ -26,10 +29,13 @@ public class AdminServiceImpl implements AdminService {
 
 	private final UserRepository userRepo;
 	private final FeeRepository feeRepository;
+	private final StudentLeaveRepository leaveRepository;
 
-	public AdminServiceImpl(UserRepository userRepo, FeeRepository feeRepository) {
+	public AdminServiceImpl(UserRepository userRepo, FeeRepository feeRepository, 
+			StudentLeaveRepository leaveRepository) {
 		this.userRepo = userRepo;
 		this.feeRepository = feeRepository;
+		this.leaveRepository = leaveRepository;
 	}
 
 	/*
@@ -125,5 +131,10 @@ public class AdminServiceImpl implements AdminService {
 		}
 			
 		return null;
+	}
+
+	@Override
+	public List<StudentLeaveDto> getAllAppliedLeaveByStudent() {
+		return leaveRepository.findAll().stream().map(StudentLeave::getStudentLeaveDto).collect(Collectors.toList());
 	}
 }
