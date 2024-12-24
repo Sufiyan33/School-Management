@@ -5,6 +5,7 @@ import java.util.List;
 import com.sufiyan.dto.FeeDto;
 import com.sufiyan.dto.SingleStudentDto;
 import com.sufiyan.dto.StudentDto;
+import com.sufiyan.dto.StudentLeaveDto;
 
 public interface AdminService {
 
@@ -19,4 +20,6 @@ public interface AdminService {
 	StudentDto updateStudent(Long id, StudentDto studentDto);
 
 	FeeDto payFee(Long studentId, FeeDto feeDto);
+
+	List<StudentLeaveDto> getAllAppliedLeaveByStudent();
 }
