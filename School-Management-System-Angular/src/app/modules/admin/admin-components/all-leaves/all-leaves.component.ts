@@ -7,6 +7,7 @@ import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-all-leaves',
+  standalone: true,
   imports: [MatProgressSpinnerModule, CommonModule, MatCardModule, RouterModule],
   templateUrl: './all-leaves.component.html',
   styleUrl: './all-leaves.component.css'
