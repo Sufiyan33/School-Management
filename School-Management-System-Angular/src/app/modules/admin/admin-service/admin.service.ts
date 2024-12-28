@@ -47,6 +47,12 @@ export class AdminService {
       headers: this.createAuthorizationHeader(),
     });
   }
+
+  getAllAppliedLeaves(): Observable<any>{
+    return this.http.get<[]>(Constant.BASIC_URL + `api/admin/leave`, {
+      headers: this.createAuthorizationHeader()
+    }) 
+  }
   
   createAuthorizationHeader(): HttpHeaders{
     let authHeaders: HttpHeaders = new HttpHeaders();
