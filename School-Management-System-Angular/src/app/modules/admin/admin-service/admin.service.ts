@@ -49,7 +49,7 @@ export class AdminService {
   }
 
   getAllAppliedLeaves(): Observable<any>{
-    return this.http.get<[]>(Constant.BASIC_URL + `api/admin/leave`, {
+    return this.http.get<[]>(Constant.BASIC_URL + `api/admin/leaves`, {
       headers: this.createAuthorizationHeader()
     }) 
   }
