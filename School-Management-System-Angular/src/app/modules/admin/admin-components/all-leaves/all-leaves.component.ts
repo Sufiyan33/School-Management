@@ -1,9 +1,13 @@
 import { Component } from '@angular/core';
 import { AdminService } from '../../admin-service/admin.service';
+import { RouterModule } from '@angular/router';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { CommonModule } from '@angular/common';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-all-leaves',
-  imports: [],
+  imports: [MatProgressSpinnerModule, CommonModule, MatCardModule, RouterModule],
   templateUrl: './all-leaves.component.html',
   styleUrl: './all-leaves.component.css'
 })
@@ -27,4 +31,9 @@ export class AllLeavesComponent {
       this.leaves = res;
     })
   }
+
+  /*changeLeaveStatus(leaveId: number, status: string){
+    this.isSpinning = true;
+    this.service.changeLeaveStatus(leaveId, status).subscribe()
+  }*/
 }
