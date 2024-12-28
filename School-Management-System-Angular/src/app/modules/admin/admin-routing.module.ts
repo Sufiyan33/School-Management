@@ -6,6 +6,7 @@ import { PostStudentComponent } from './admin-components/post-student/post-stude
 import { AllStudentsComponent } from './admin-components/all-students/all-students.component';
 import { UpdateStudentComponent } from './admin-components/update-student/update-student.component';
 import { PayFeeComponent } from './admin-components/pay-fee/pay-fee.component';
+import { AllLeavesComponent } from './admin-components/all-leaves/all-leaves.component';
 
 const routes: Routes = [
   {
@@ -31,6 +32,11 @@ const routes: Routes = [
   {
     path: 'fee/:studentId',
     component: PayFeeComponent,
+    canActivate: [adminGuard]
+  },
+  {
+    path: 'leaves',
+    component: AllLeavesComponent,
     canActivate: [adminGuard]
   }
 ];
